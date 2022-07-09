@@ -10,3 +10,7 @@ Install:
 npm i sweetalert2-neutral
 ```
 or use [pre-built binaries](https://github.com/lofcz/sweetalert2-neutral/releases).
+  
+<sub>Has SweetAlert2 helped you create an amazing application?
+You can show your support by making a donation:   
+https://sweetalert2.github.io/#donations</sub>
