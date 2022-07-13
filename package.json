@@ -1,12 +1,12 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.4.21-neutral",
+  "version": "11.4.22-neutral",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lofcz/sweetalert2-neutral.git"
   },
   "homepage": "https://sweetalert2.github.io/",
-  "description": "Fork of Swal2 without anti-war messages",
+  "description": "Fork of Swal2 sans anti-war messages",
   "main": "dist/sweetalert2.all.js",
   "browser": "dist/sweetalert2.all.js",
   "module": "dist/sweetalert2.all.js",
@@ -58,7 +58,7 @@
       }
     ]
   },
-  "author": "Limon Monte <limon.monte@gmail.com> (https://limonte.github.io)",
+  "author": "Limon Monte <limon.monte@gmail.com> (https://limonte.github.io); @lofcz (https://github.com/lofcz)",
   "contributors": [
     "Giuseppe Verni (https://github.com/gverni)",
     "Matthew Francis Brunetti <zenflow87@gmail.com> (https://github.com/zenflow)",
@@ -70,14 +70,15 @@
   "keywords": [
     "sweetalert",
     "sweetalert2",
+    "sweetalert2-neutral",
     "alert",
     "modal",
     "popup",
     "prompt",
     "confirm",
     "toast",
-    "accessible"
-  ],
+    "accessible",
+     ],
   "scripts": {
     "start": "gulp develop --continue-on-error --skip-minification --skip-standalone",
     "lint": "stylelint src/**/*.scss && eslint src cypress *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
