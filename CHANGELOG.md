@@ -1,3 +1,17 @@
+## [11.4.22](https://github.com/sweetalert2/sweetalert2/compare/v11.4.21...v11.4.22) (2022-07-13)
+
+
+### Bug Fixes
+
+* better description for Masyanya video ([e51a499](https://github.com/sweetalert2/sweetalert2/commit/e51a499ebe6ec60af806b03fa377aebbbddfe8b2))
+
+## [11.4.21](https://github.com/sweetalert2/sweetalert2/compare/v11.4.20...v11.4.21) (2022-07-13)
+
+
+### Bug Fixes
+
+* add Masyanya's attempt to teach empathy to russians ([fc75aaf](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24))
+
 ## [11.4.20](https://github.com/sweetalert2/sweetalert2/compare/v11.4.19...v11.4.20) (2022-07-05)
 
 

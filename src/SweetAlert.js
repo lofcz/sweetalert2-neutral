@@ -1,6 +1,6 @@
 import defaultParams, { showWarningsForParams } from './utils/params.js'
 import * as dom from './utils/dom/index.js'
-import { callIfFunction } from './utils/utils.js'
+import { callIfFunction, getRandomElement } from './utils/utils.js'
 import { DismissReason } from './utils/DismissReason.js'
 import { unsetAriaHidden } from './utils/aria.js'
 import { getTemplateParams } from './utils/getTemplateParams.js'
@@ -249,6 +249,6 @@ Object.keys(instanceMethods).forEach((key) => {
 
 SweetAlert.DismissReason = DismissReason
 
-SweetAlert.version = '11.4.20'
+SweetAlert.version = '11.4.22'
 
 export default SweetAlert
