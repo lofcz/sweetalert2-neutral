@@ -77,8 +77,8 @@
     "prompt",
     "confirm",
     "toast",
-    "accessible",
-     ],
+    "accessible"
+  ],
   "scripts": {
     "start": "gulp develop --continue-on-error --skip-minification --skip-standalone",
     "lint": "stylelint src/**/*.scss && eslint src cypress *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
