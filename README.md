@@ -2,7 +2,7 @@
 
 This drop-in replacement fixes recent changes in Swal2 forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
    
-[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on locator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)  
+[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on navigator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)  
   
 See: https://security.snyk.io/vuln/SNYK-JS-SWEETALERT2-2774674, https://github.com/sweetalert2/sweetalert2/pull/2462   
 Swal2: https://github.com/sweetalert2/sweetalert2  
