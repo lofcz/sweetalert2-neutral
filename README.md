@@ -12,7 +12,35 @@ Install:
 npm i sweetalert2-neutral
 ```
 or use [pre-built binaries](https://github.com/lofcz/sweetalert2-neutral/releases).
-  
+
+### FAQ
+
+> I am a Russian citizen, should I merge to Swal2-NEUTRAL?
+
+Most certainly. Currently you could (in theory) end up in prison up for 20 years. See [the law](http://www.consultant.ru/document/cons_doc_LAW_10699/4618fd95c30a6fbe7717ceaebf64f082e735c9ad/).  
+[Limonte acknowledged this with sarcasm about npm ecosystem security.](https://github.com/sweetalert2/sweetalert2/pull/2462#issuecomment-1184357588)
+
+> I am a non-Russian citizen, should I merge to Swal2-NEUTRAL?
+
+Most certainly. By merging you will mitigate the 10% chance of unwanted HTML being injected to your site. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) for the confusion this can create.
+
+> I want to have anti-war messages displayed on my site, should I merge to Swal2-NEUTRAL?
+
+Most certainly. By merging you can decide which anti-war messages you want to display, instead of relying on [volatile & abruptly changing](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24) implementation by Limonte.
+
+> Are there any other changes apart from removing "anti-war" messages?
+
+No.
+
+> Are there any other benefits apart from unwanted banners not showing up on my site?
+
+Yes, the library is ~5% smaller, thus less traffic is used and your site loads faster.
+
+> How do I migrate to Swal2-NEUTRAL?
+
+- When Swal2 is installed via npm: `npm uninstall sweetalert2` `npm i sweetalert2-neutral`
+- When serving Swal2 via local files: [replace Swal2 JS & CSS pre-built files](https://github.com/lofcz/sweetalert2-neutral/releases)
+
 <sub>Has SweetAlert2 helped you create an amazing application?
 You can show your support by making a donation:   
 https://sweetalert2.github.io/#donations</sub>
