@@ -8,23 +8,23 @@
 ## [11.4.22](https://github.com/sweetalert2/sweetalert2/compare/v11.4.21...v11.4.22) (2022-07-13)
 
 
-### Bug Fixes
+### ~~Bug Fixes~~
 
-* better description for Masyanya video ([e51a499](https://github.com/sweetalert2/sweetalert2/commit/e51a499ebe6ec60af806b03fa377aebbbddfe8b2))
+~~* better description for Masyanya video ([e51a499](https://github.com/sweetalert2/sweetalert2/commit/e51a499ebe6ec60af806b03fa377aebbbddfe8b2))~~
 
 ## [11.4.21](https://github.com/sweetalert2/sweetalert2/compare/v11.4.20...v11.4.21) (2022-07-13)
 
 
-### Bug Fixes
+### ~~Bug Fixes~~
 
-* add Masyanya's attempt to teach empathy to russians ([fc75aaf](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24))
+~~* add Masyanya's attempt to teach empathy to russians ([fc75aaf](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24))~~
 
-## [11.4.20](https://github.com/sweetalert2/sweetalert2/compare/v11.4.19...v11.4.20) (2022-07-05)
+## ~~[11.4.20](https://github.com/sweetalert2/sweetalert2/compare/v11.4.19...v11.4.20) (2022-07-05)~~
 
 
-### Bug Fixes
+### ~~Bug Fixes~~
 
-* better anti-war message for Russians ([#2462](https://github.com/sweetalert2/sweetalert2/issues/2462)) ([1ad0dd9](https://github.com/sweetalert2/sweetalert2/commit/1ad0dd97ee11bd472c381e4063a9ec8fa0d40be1))
+~~* better anti-war message for Russians ([#2462](https://github.com/sweetalert2/sweetalert2/issues/2462)) ([1ad0dd9](https://github.com/sweetalert2/sweetalert2/commit/1ad0dd97ee11bd472c381e4063a9ec8fa0d40be1))~~
 
 ## [11.4.19](https://github.com/sweetalert2/sweetalert2/compare/v11.4.18...v11.4.19) (2022-06-27)
 
@@ -33,12 +33,12 @@
 
 * auto-import styles in Vite ([#2459](https://github.com/sweetalert2/sweetalert2/issues/2459)) ([31a98d6](https://github.com/sweetalert2/sweetalert2/commit/31a98d6dee29b1e402e5fd2ea1ba7745737c03e8))
 
-## [11.4.18](https://github.com/sweetalert2/sweetalert2/compare/v11.4.17...v11.4.18) (2022-06-19)
+## ~~[11.4.18](https://github.com/sweetalert2/sweetalert2/compare/v11.4.17...v11.4.18) (2022-06-19)~~
 
 
-### Bug Fixes
+### ~~Bug Fixes~~
 
-* better check for user's language ([11bcd99](https://github.com/sweetalert2/sweetalert2/commit/11bcd99df5dcde17a2f36ca5493db8b5c53dfe7e)), closes [#2456](https://github.com/sweetalert2/sweetalert2/issues/2456)
+~~* better check for user's language ([11bcd99](https://github.com/sweetalert2/sweetalert2/commit/11bcd99df5dcde17a2f36ca5493db8b5c53dfe7e)), closes [#2456](https://github.com/sweetalert2/sweetalert2/issues/2456)~~
 
 ## [11.4.17](https://github.com/sweetalert2/sweetalert2/compare/v11.4.16...v11.4.17) (2022-05-24)
 
@@ -96,12 +96,12 @@
 
 * throw warning about invalid inputType for input: textarea ([a26e08a](https://github.com/sweetalert2/sweetalert2/commit/a26e08abb2c1bea27fffbc0cbfe434add2d88135))
 
-## [11.4.9](https://github.com/sweetalert2/sweetalert2/compare/v11.4.8...v11.4.9) (2022-04-21)
+## ~~[11.4.9](https://github.com/sweetalert2/sweetalert2/compare/v11.4.8...v11.4.9) (2022-04-21)~~
 
 
-### Bug Fixes
+### ~~Bug Fixes~~
 
-* add STOP WAR message for Russians ([#2428](https://github.com/sweetalert2/sweetalert2/issues/2428)) ([64825e4](https://github.com/sweetalert2/sweetalert2/commit/64825e44f7a67e3a8b43d0b37ad665cc7fd4f78f))
+~~* add STOP WAR message for Russians ([#2428](https://github.com/sweetalert2/sweetalert2/issues/2428)) ([64825e4](https://github.com/sweetalert2/sweetalert2/commit/64825e44f7a67e3a8b43d0b37ad665cc7fd4f78f))~~
 
 ## [11.4.8](https://github.com/sweetalert2/sweetalert2/compare/v11.4.7...v11.4.8) (2022-03-29)
 
