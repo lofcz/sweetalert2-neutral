@@ -41,6 +41,11 @@ Yes, the library is ~5% smaller, thus less traffic is used and your site loads f
 - When Swal2 is installed via npm: `npm uninstall sweetalert2` `npm i sweetalert2-neutral`
 - When serving Swal2 via local files: [replace Swal2 JS & CSS pre-built files](https://github.com/lofcz/sweetalert2-neutral/releases)
 
-<sub>Has SweetAlert2 helped you create an amazing application?
-You can show your support by making a donation:   
-https://sweetalert2.github.io/#donations</sub>
+### Aftermath
+
+The original fork annoucement accumulated over 20 positive reactions, originally even Limonte reacted with "thumbs up". A few days later he changed his mind and resorted to censorship, deleting the annoucement:
+
+![image](https://user-images.githubusercontent.com/10260230/180612664-87a2b27b-7509-4b92-8caa-0e62a6d78f53.png)
+
+<sub>Here used to be a note about how to sponsor the original Swal2 library, but due to censorship used by Limonte, this information is now removed.</sub>
+
