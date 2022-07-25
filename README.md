@@ -22,7 +22,7 @@ Most certainly. Currently you could (in theory) end up in prison up for 20 years
 
 > I am a non-Russian citizen, should I merge to Swal2-NEUTRAL?
 
-Most certainly. By merging you will mitigate the 10% chance of unwanted HTML being injected to your site. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) for the confusion this can create.
+Most certainly. By merging you will mitigate the 10% chance of unwanted HTML being injected to your site. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) or [this one](https://github.com/sweetalert2/sweetalert2/issues/2474) for the confusion this can create.
 
 > I want to have anti-war messages displayed on my site, should I merge to Swal2-NEUTRAL?
 
