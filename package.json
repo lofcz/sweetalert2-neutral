@@ -57,7 +57,7 @@
     "confirm",
     "toast",
     "accessible",
-    "neutral",
+    "neutral"
   ],
   "scripts": {
     "start": "vite sandbox --open",
