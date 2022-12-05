@@ -1,6 +1,6 @@
 # Sweetalert 2 NEUTRAL
 
-## If you use this library and find it useful, please share the fork existence [upstream](https://github.com/sweetalert2/sweetalert2/issues) by [opening an issue](https://github.com/sweetalert2/sweetalert2/issues/new?assignees=&labels=&template=01_bug_report.md) so other users impacted can migrate.
+## If you use this library and find it useful, please share the fork existence [upstream](https://github.com/sweetalert2/sweetalert2/issues) by [opening an issue](https://github.com/sweetalert2/sweetalert2/issues/new?assignees=&labels=&template=01_bug_report.md) so other users impacted can migrate. Together we can fight Limonte's censorship!
 
 This drop-in Swal2 replacement removes ~~recent~~ ongoing protestware "features" forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
   
