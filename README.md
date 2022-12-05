@@ -2,9 +2,9 @@
 
 ## If you use this library and find it useful, please share the fork existence [upstream](https://github.com/sweetalert2/sweetalert2/issues) by [opening an issue](https://github.com/sweetalert2/sweetalert2/issues/new?assignees=&labels=&template=01_bug_report.md) so other users impacted can migrate.
 
-This drop-in replacement fixes recent changes in Swal2 forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
+This drop-in Swal2 replacement removes ~~recent~~ ongoing protestware "features" forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
   
-Original library is now "prohibited" to use in certain countries. This is however stated only in the readme, not in the license you obtain the source with and therefore isn't legally binding. For users with `navigator.location` matching `ru`, `su` or `рф` the original library now aggressively replaces the entire page content with Limonte's political messages. 
+Original library is now "prohibited" to use in certain countries. This is however stated only in the readme, not in the license you obtain the source with and therefore *probably* isn't legally binding. For users with `navigator.location` matching `ru`, `su` or `рф` the original library now aggressively replaces the entire page content with Limonte's political messages. 
    
 ~~[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on navigator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)~~  
   
