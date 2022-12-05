@@ -1,11 +1,16 @@
 # Sweetalert 2 NEUTRAL
 
+## If you use this library and find it useful, please share the fork existence [upstream](https://github.com/sweetalert2/sweetalert2/issues) by [opening an issue](https://github.com/sweetalert2/sweetalert2/issues/new?assignees=&labels=&template=01_bug_report.md) so other users impacted can migrate.
+
 This drop-in replacement fixes recent changes in Swal2 forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
+  
+Original library is now "prohibited" to use in certain countries. This is however stated only in the readme, not in the license you obtain the source with and therefore isn't legally binding. For users with `navigator.location` matching `ru`, `su` or `рф` the original library now aggressively replaces the entire page content with Limonte's political messages. 
    
-[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on navigator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)  
+~~[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on navigator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)~~  
   
 See: https://security.snyk.io/vuln/SNYK-JS-SWEETALERT2-2774674, https://github.com/sweetalert2/sweetalert2/pull/2462   
-Swal2: https://github.com/sweetalert2/sweetalert2  
+Harm done by the original library: https://github.com/sweetalert2/sweetalert2/issues/2568, https://github.com/sweetalert2/sweetalert2/issues/2561, https://github.com/sweetalert2/sweetalert2/issues/2560, https://github.com/sweetalert2/sweetalert2/issues/2552
+
 
 Install:
 ```
@@ -22,7 +27,7 @@ Most certainly. Currently you could (in theory) end up in prison up for 20 years
 
 > I am a non-Russian citizen, should I merge to Swal2-NEUTRAL?
 
-Most certainly. By merging you will mitigate the 10% chance of unwanted HTML being injected to your site. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) or [this one](https://github.com/sweetalert2/sweetalert2/issues/2474) for the confusion this can create.
+Most certainly. By merging you will mitigate ~~the 10% chance of unwanted HTML being injected to your site.~~ your entire page content being overwriten. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) or [this one](https://github.com/sweetalert2/sweetalert2/issues/2474) for the confusion this can create.
 
 > I want to have anti-war messages displayed on my site, should I merge to Swal2-NEUTRAL?
 
