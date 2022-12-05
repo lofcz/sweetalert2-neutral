@@ -1,9 +1,9 @@
 {
-  "name": "sweetalert2",
-  "version": "11.6.15",
-  "repository": "sweetalert2/sweetalert2",
+  "name": "sweetalert2-neutral",
+  "version": "11.6.15-neutral",
+  "repository": "lofcz/sweetalert2-neutral",
   "homepage": "https://sweetalert2.github.io/",
-  "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert",
+  "description": "Fork of Swal2 sans anti-war messages.",
   "main": "dist/sweetalert2.all.js",
   "browser": "dist/sweetalert2.all.js",
   "module": "dist/sweetalert2.all.js",
@@ -37,8 +37,9 @@
     "src",
     "sweetalert2.d.ts"
   ],
-  "author": "Limon Monte (https://limonte.github.io)",
+  "author": "Matěj Štágl",
   "contributors": [
+    "Limonte",
     "Matthew Francis Brunetti <zenflow87@gmail.com> (https://github.com/zenflow)",
     "Morgan Touverey-Quilling <mtouverey@alembic-dev.com> (https://github.com/toverux)",
     "Giuseppe Verni (https://github.com/gverni)",
@@ -55,7 +56,8 @@
     "prompt",
     "confirm",
     "toast",
-    "accessible"
+    "accessible",
+    "neutral",
   ],
   "scripts": {
     "start": "vite sandbox --open",
@@ -65,10 +67,6 @@
     "check-types": "npx -p typescript@latest tsc --noEmit -p jsconfig.json",
     "cypress:open": "cypress open"
   },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/limonte"
-  },
   "prettier": {
     "printWidth": 120,
     "semi": false,
@@ -76,6 +74,6 @@
     "quoteProps": "consistent",
     "trailingComma": "es5"
   },
-  "bugs": "https://github.com/sweetalert2/sweetalert2/issues",
+  "bugs": "https://github.com/lofcz/sweetalert2/issues",
   "license": "MIT"
 }
