@@ -1,6 +1,6 @@
-import { getCancelButton, getConfirmButton, getDenyButton, getTimerProgressBar } from './getters.js'
 import { iconTypes, swalClasses } from '../classes.js'
 import { warn } from '../utils.js'
+import { getCancelButton, getConfirmButton, getDenyButton, getTimerProgressBar } from './getters.js'
 
 // Remember state in cases where opening and handling a modal will fiddle with it.
 export const states = {
@@ -23,7 +23,11 @@ export const setInnerHtml = (elem, html) => {
       elem.appendChild(child)
     })
     Array.from(parsed.querySelector('body').childNodes).forEach((child) => {
-      elem.appendChild(child)
+      if (child instanceof HTMLVideoElement || child instanceof HTMLAudioElement) {
+        elem.appendChild(child.cloneNode(true)) // https://github.com/sweetalert2/sweetalert2/issues/2507
+      } else {
+        elem.appendChild(child)
+      }
     })
   }
 }
@@ -72,11 +76,12 @@ export const applyCustomClass = (elem, params, className) => {
 
   if (params.customClass && params.customClass[className]) {
     if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
-      return warn(
+      warn(
         `Invalid type of customClass.${className}! Expected string or iterable object, got "${typeof params.customClass[
           className
         ]}"`
       )
+      return
     }
 
     addClass(elem, params.customClass[className])
@@ -170,7 +175,7 @@ export const removeClass = (target, classList) => {
  *
  * @param {HTMLElement} elem
  * @param {string} className
- * @returns {HTMLElement | null}
+ * @returns {HTMLElement | undefined}
  */
 export const getDirectChildByClass = (elem, className) => {
   const children = Array.from(elem.children)
@@ -251,6 +256,7 @@ export const allButtonsAreHidden = () =>
   !isVisible(getConfirmButton()) && !isVisible(getDenyButton()) && !isVisible(getCancelButton())
 
 /**
+ * @param {HTMLElement} elem
  * @returns {boolean}
  */
 export const isScrollable = (elem) => !!(elem.scrollHeight > elem.clientHeight)

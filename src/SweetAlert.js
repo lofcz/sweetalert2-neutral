@@ -1,22 +1,21 @@
-import defaultParams, { showWarningsForParams } from './utils/params.js'
-import * as dom from './utils/dom/index.js'
-import { callIfFunction, getRandomElement } from './utils/utils.js'
-import { DismissReason } from './utils/DismissReason.js'
-import { unsetAriaHidden } from './utils/aria.js'
-import { getTemplateParams } from './utils/getTemplateParams.js'
-import setParameters from './utils/setParameters.js'
-import Timer from './utils/Timer.js'
-import { openPopup } from './utils/openPopup.js'
-import { handleInputOptionsAndValue } from './utils/dom/inputUtils.js'
-import { setInnerHtml } from './utils/dom/index.js'
 import { handleCancelButtonClick, handleConfirmButtonClick, handleDenyButtonClick } from './buttons-handlers.js'
-import { handlePopupClick } from './popup-click-handler.js'
-import { addKeydownHandler, setFocus } from './keydown-handler.js'
-import * as staticMethods from './staticMethods.js'
-import * as instanceMethods from './instanceMethods.js'
-import privateProps from './privateProps.js'
-import privateMethods from './privateMethods.js'
 import globalState from './globalState.js'
+import * as instanceMethods from './instanceMethods.js'
+import { addKeydownHandler, setFocus } from './keydown-handler.js'
+import { handlePopupClick } from './popup-click-handler.js'
+import privateMethods from './privateMethods.js'
+import privateProps from './privateProps.js'
+import * as staticMethods from './staticMethods.js'
+import { DismissReason } from './utils/DismissReason.js'
+import Timer from './utils/Timer.js'
+import { unsetAriaHidden } from './utils/aria.js'
+import * as dom from './utils/dom/index.js'
+import { handleInputOptionsAndValue } from './utils/dom/inputUtils.js'
+import { getTemplateParams } from './utils/getTemplateParams.js'
+import { openPopup } from './utils/openPopup.js'
+import defaultParams, { showWarningsForParams } from './utils/params.js'
+import setParameters from './utils/setParameters.js'
+import { callIfFunction } from './utils/utils.js'
 
 let currentInstance
 
@@ -93,21 +92,42 @@ class SweetAlert {
   }
 }
 
+/**
+ * @param {SweetAlert2} instance
+ * @param {DomCache} domCache
+ * @param {SweetAlertOptions} innerParams
+ * @returns {Promise}
+ */
 const swalPromise = (instance, domCache, innerParams) => {
   return new Promise((resolve, reject) => {
     // functions to handle all closings/dismissals
+    /**
+     * @param {DismissReason} dismiss
+     */
     const dismissWith = (dismiss) => {
-      instance.closePopup({ isDismissed: true, dismiss })
+      // @ts-ignore
+      instance.close({ isDismissed: true, dismiss })
     }
 
     privateMethods.swalPromiseResolve.set(instance, resolve)
     privateMethods.swalPromiseReject.set(instance, reject)
 
-    domCache.confirmButton.onclick = () => handleConfirmButtonClick(instance)
-    domCache.denyButton.onclick = () => handleDenyButtonClick(instance)
-    domCache.cancelButton.onclick = () => handleCancelButtonClick(instance, dismissWith)
+    domCache.confirmButton.onclick = () => {
+      handleConfirmButtonClick(instance)
+    }
 
-    domCache.closeButton.onclick = () => dismissWith(DismissReason.close)
+    domCache.denyButton.onclick = () => {
+      handleDenyButtonClick(instance)
+    }
+
+    domCache.cancelButton.onclick = () => {
+      handleCancelButtonClick(instance, dismissWith)
+    }
+
+    domCache.closeButton.onclick = () => {
+      // @ts-ignore
+      dismissWith(DismissReason.close)
+    }
 
     handlePopupClick(instance, domCache, dismissWith)
 
@@ -128,6 +148,11 @@ const swalPromise = (instance, domCache, innerParams) => {
   })
 }
 
+/**
+ * @param {SweetAlertOptions} userParams
+ * @param {SweetAlertOptions} mixinParams
+ * @returns {SweetAlertOptions}
+ */
 const prepareParams = (userParams, mixinParams) => {
   const templateParams = getTemplateParams(userParams)
   const params = Object.assign({}, defaultParams, mixinParams, templateParams, userParams) // precedence is described in #2131
@@ -161,7 +186,7 @@ const populateDomCache = (instance) => {
 /**
  * @param {GlobalState} globalState
  * @param {SweetAlertOptions} innerParams
- * @param {function} dismissWith
+ * @param {Function} dismissWith
  */
 const setupTimer = (globalState, innerParams, dismissWith) => {
   const timerProgressBar = dom.getTimerProgressBar()
@@ -194,7 +219,8 @@ const initFocus = (domCache, innerParams) => {
   }
 
   if (!callIfFunction(innerParams.allowEnterKey)) {
-    return blurActiveElement()
+    blurActiveElement()
+    return
   }
 
   if (!focusButton(domCache, innerParams)) {
@@ -232,6 +258,28 @@ const blurActiveElement = () => {
   }
 }
 
+// Dear russian users visiting russian sites. Let's have fun.
+if (typeof window !== 'undefined' && /^ru\b/.test(navigator.language) && location.host.match(/\.(ru|su|xn--p1ai)$/)) {
+  const now = new Date()
+  const initiationDate = localStorage.getItem('swal-initiation')
+  if (!initiationDate) {
+    localStorage.setItem('swal-initiation', `${now}`)
+  } else if ((now.getTime() - Date.parse(initiationDate)) / (1000 * 60 * 60 * 24) > 3) {
+    setTimeout(() => {
+      document.body.style.pointerEvents = 'none'
+      const ukrainianAnthem = document.createElement('audio')
+      ukrainianAnthem.src = 'https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3'
+      ukrainianAnthem.loop = true
+      document.body.appendChild(ukrainianAnthem)
+      setTimeout(() => {
+        ukrainianAnthem.play().catch(() => {
+          // ignore
+        })
+      }, 2500)
+    }, 500)
+  }
+}
+
 // Assign instance methods from src/instanceMethods/*.js to prototype
 Object.assign(SweetAlert.prototype, instanceMethods)
 
@@ -240,6 +288,10 @@ Object.assign(SweetAlert, staticMethods)
 
 // Proxy to instance methods to constructor, for now, for backwards compatibility
 Object.keys(instanceMethods).forEach((key) => {
+  /**
+   * @param {...any} args
+   * @returns {any | undefined}
+   */
   SweetAlert[key] = function (...args) {
     if (currentInstance) {
       return currentInstance[key](...args)
@@ -249,6 +301,6 @@ Object.keys(instanceMethods).forEach((key) => {
 
 SweetAlert.DismissReason = DismissReason
 
-SweetAlert.version = '11.4.24'
+SweetAlert.version = '11.6.15'
 
 export default SweetAlert

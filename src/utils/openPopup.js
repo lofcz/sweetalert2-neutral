@@ -1,16 +1,16 @@
-import * as dom from './dom/index.js'
-import { swalClasses } from './classes.js'
-import { fixScrollbar } from './scrollbarFix.js'
-import { iOSfix } from './iosFix.js'
-import { setAriaHidden } from './aria.js'
 import globalState from '../globalState.js'
+import { setAriaHidden } from './aria.js'
+import { swalClasses } from './classes.js'
+import * as dom from './dom/index.js'
+import { iOSfix } from './iosFix.js'
+import { fixScrollbar } from './scrollbarFix.js'
 
 export const SHOW_CLASS_TIMEOUT = 10
 
 /**
  * Open popup, add necessary classes and styles, fix scrollbar
  *
- * @param params
+ * @param {SweetAlertOptions} params
  */
 export const openPopup = (params) => {
   const container = dom.getContainer()
@@ -45,6 +45,9 @@ export const openPopup = (params) => {
   dom.removeClass(container, swalClasses['no-transition'])
 }
 
+/**
+ * @param {AnimationEvent} event
+ */
 const swalOpenAnimationFinished = (event) => {
   const popup = dom.getPopup()
   if (event.target !== popup) {
@@ -55,6 +58,10 @@ const swalOpenAnimationFinished = (event) => {
   container.style.overflowY = 'auto'
 }
 
+/**
+ * @param {HTMLElement} container
+ * @param {HTMLElement} popup
+ */
 const setScrollingVisibility = (container, popup) => {
   if (dom.animationEndEvent && dom.hasCssAnimation(popup)) {
     container.style.overflowY = 'hidden'
@@ -64,6 +71,11 @@ const setScrollingVisibility = (container, popup) => {
   }
 }
 
+/**
+ * @param {HTMLElement} container
+ * @param {boolean} scrollbarPadding
+ * @param {string} initialBodyOverflow
+ */
 const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) => {
   iOSfix()
 
@@ -77,6 +89,11 @@ const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) =>
   })
 }
 
+/**
+ * @param {HTMLElement} container
+ * @param {HTMLElement} popup
+ * @param {SweetAlertOptions} params
+ */
 const addClasses = (container, popup, params) => {
   dom.addClass(container, params.showClass.backdrop)
   // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059

@@ -1,6 +1,6 @@
 import { swalClasses } from '../../classes.js'
-import { warn } from '../../utils.js'
 import * as dom from '../../dom/index.js'
+import { warn } from '../../utils.js'
 
 /**
  * @param {SweetAlert2} instance
@@ -9,7 +9,8 @@ import * as dom from '../../dom/index.js'
 export const renderProgressSteps = (instance, params) => {
   const progressStepsContainer = dom.getProgressSteps()
   if (!params.progressSteps || params.progressSteps.length === 0) {
-    return dom.hide(progressStepsContainer)
+    dom.hide(progressStepsContainer)
+    return
   }
 
   dom.show(progressStepsContainer)

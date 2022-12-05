@@ -122,6 +122,11 @@ declare module 'sweetalert2' {
     function getIcon(): HTMLElement | null
 
     /**
+     * Gets the icon content (without border).
+     */
+    function getIconContent(): HTMLElement | null
+
+    /**
      * Gets the "Confirm" button.
      */
     function getConfirmButton(): HTMLButtonElement | null
@@ -175,7 +180,7 @@ declare module 'sweetalert2' {
      * Swal.showLoading(Swal.getDenyButton())
      * ```
      */
-    function showLoading(buttonToReplace?: HTMLButtonElement): void
+    function showLoading(buttonToReplace: HTMLButtonElement | null): void
 
     /**
      * Hides loader and shows back the button which was hidden by .showLoading()

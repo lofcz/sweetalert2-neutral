@@ -1,31 +1,23 @@
-import pify from 'pify'
-import rimraf from 'rimraf'
-import execute from '@sweetalert2/execute'
-import replaceInFile from 'replace-in-file'
+#!/usr/bin/env zx
+import { $, echo, fs } from 'zx'
 
-const log = console.log // eslint-disable-line no-console
-const removeDir = pify(rimraf)
+echo`Resetting the branch...`
+await $`git checkout .`
+echo``
 
-;(async () => {
-  log('Resetting the branch...')
-  await execute('git checkout .')
+// the command has been called by semantic-release, bump version in src/SweetAlert.js before building dist
+if (process.env.VERSION) {
+  echo`Updating the version in src/SweetAlert.js...`
+  fs.writeFileSync(
+    'src/SweetAlert.js',
+    fs.readFileSync('src/SweetAlert.js', 'utf8').replace(/version = '(.*?)'/, `version = '${process.env.VERSION}'`)
+  )
+  await $`git add src/SweetAlert.js`
+  echo``
+}
 
-  log('Deleting the current dist folder...')
-  await removeDir('dist')
+echo`Running the build...`
+await $`yarn build`
+echo``
 
-  // the command has been called by semantic-release, bump version in src/SweetAlert.js before building dist
-  if (process.env.VERSION) {
-    log('Updating the version in src/SweetAlert.js...')
-    replaceInFile.sync({
-      files: 'src/SweetAlert.js',
-      from: /\.version = '.*?'/,
-      to: `.version = '${process.env.VERSION}'`,
-    })
-    await execute('git add src/SweetAlert.js')
-  }
-
-  log('Running the build...')
-  await execute('yarn build')
-
-  log('OK!')
-})().catch(console.error)
+echo`OK!`

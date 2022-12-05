@@ -1,19 +1,22 @@
 import * as dom from '../../src/utils/dom/index.js'
+import { isUpdatableParameter } from '../../src/utils/params.js'
 import { warn } from '../../src/utils/utils.js'
 import privateProps from '../privateProps.js'
-import { isUpdatableParameter } from '../../src/utils/params.js'
 
 /**
  * Updates popup parameters.
+ *
+ * @param {SweetAlertOptions} params
  */
 export function update(params) {
   const popup = dom.getPopup()
   const innerParams = privateProps.innerParams.get(this)
 
   if (!popup || dom.hasClass(popup, innerParams.hideClass.popup)) {
-    return warn(
+    warn(
       `You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.`
     )
+    return
   }
 
   const validUpdatableParams = filterValidParams(params)
@@ -32,6 +35,10 @@ export function update(params) {
   })
 }
 
+/**
+ * @param {SweetAlertOptions} params
+ * @returns {SweetAlertOptions}
+ */
 const filterValidParams = (params) => {
   const validUpdatableParams = {}
   Object.keys(params).forEach((param) => {

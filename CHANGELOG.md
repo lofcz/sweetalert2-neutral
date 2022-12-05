@@ -1,3 +1,235 @@
+## [11.6.15](https://github.com/sweetalert2/sweetalert2/compare/v11.6.14...v11.6.15) (2022-11-30)
+
+
+### Bug Fixes
+
+* types in keydown-handler.js ([51f05b0](https://github.com/sweetalert2/sweetalert2/commit/51f05b01b4a031eb666b0980f3faedb88b3cacb8))
+
+## [11.6.14](https://github.com/sweetalert2/sweetalert2/compare/v11.6.13...v11.6.14) (2022-11-24)
+
+
+### Bug Fixes
+
+* disallow plugin usage for `.ru`, `.su`, and `.рф` domain zones ([#2567](https://github.com/sweetalert2/sweetalert2/issues/2567)) ([6d02e10](https://github.com/sweetalert2/sweetalert2/commit/6d02e1095e5d9db1dfa7f0708df6fa13a1b32be3))
+
+## [11.6.13](https://github.com/sweetalert2/sweetalert2/compare/v11.6.12...v11.6.13) (2022-11-23)
+
+
+### Bug Fixes
+
+* remove unnecessary instanceMethods/progress-steps.js ([6b56c13](https://github.com/sweetalert2/sweetalert2/commit/6b56c13b3ad89e916311ad96000ae94cb95d78f2))
+
+## [11.6.12](https://github.com/sweetalert2/sweetalert2/compare/v11.6.11...v11.6.12) (2022-11-23)
+
+
+### Bug Fixes
+
+* add types to update.js ([ad39471](https://github.com/sweetalert2/sweetalert2/commit/ad394715caf026b19831b473f3a831da0ea214cf))
+
+## [11.6.11](https://github.com/sweetalert2/sweetalert2/compare/v11.6.10...v11.6.11) (2022-11-21)
+
+
+### Bug Fixes
+
+* add types to validation-message.js ([47a88ca](https://github.com/sweetalert2/sweetalert2/commit/47a88ca55c4aa4ffba61f2b2e732791ac08ec66f))
+
+## [11.6.10](https://github.com/sweetalert2/sweetalert2/compare/v11.6.9...v11.6.10) (2022-11-20)
+
+
+### Bug Fixes
+
+* use zx for tools/*.mjs scripts ([48c422b](https://github.com/sweetalert2/sweetalert2/commit/48c422bce25d6951b58bb8a1a78a7857056fd50a))
+
+## [11.6.9](https://github.com/sweetalert2/sweetalert2/compare/v11.6.8...v11.6.9) (2022-11-17)
+
+
+### Bug Fixes
+
+* add types to bindClickHandler.js ([c9db31a](https://github.com/sweetalert2/sweetalert2/commit/c9db31af70d5e7bcd36d46cc25df34cb21f85f1d))
+* remove typesVersions ([dbf6e4d](https://github.com/sweetalert2/sweetalert2/commit/dbf6e4d7516111b369de63274bc48557b3e182f2))
+
+## [11.6.8](https://github.com/sweetalert2/sweetalert2/compare/v11.6.7...v11.6.8) (2022-11-10)
+
+
+### Bug Fixes
+
+* types in domUtils.js ([eb8d96a](https://github.com/sweetalert2/sweetalert2/commit/eb8d96a5fde10fb5f77e576c60c54cced62c0be1))
+
+## [11.6.7](https://github.com/sweetalert2/sweetalert2/compare/v11.6.6...v11.6.7) (2022-11-07)
+
+
+### Bug Fixes
+
+* support TS >= 4.0 ([#2548](https://github.com/sweetalert2/sweetalert2/issues/2548)) ([49c5abf](https://github.com/sweetalert2/sweetalert2/commit/49c5abf3da0f6a6f28765b406f911e3901e61ba0))
+
+## [11.6.6](https://github.com/sweetalert2/sweetalert2/compare/v11.6.5...v11.6.6) (2022-11-06)
+
+
+### Bug Fixes
+
+* **types:** add CSSValueWithUnit type ([#2545](https://github.com/sweetalert2/sweetalert2/issues/2545)) ([34fff14](https://github.com/sweetalert2/sweetalert2/commit/34fff143962740ec440d2d6e228a19b62d1db26a))
+
+## [11.6.5](https://github.com/sweetalert2/sweetalert2/compare/v11.6.4...v11.6.5) (2022-10-30)
+
+
+### Bug Fixes
+
+* toast pop up sizing based on message length ([#2540](https://github.com/sweetalert2/sweetalert2/issues/2540)) ([251ffea](https://github.com/sweetalert2/sweetalert2/commit/251ffea84b11ebdaf5b3af233a3a4539b8d80533))
+
+## [11.6.4](https://github.com/sweetalert2/sweetalert2/compare/v11.6.3...v11.6.4) (2022-10-27)
+
+
+### Bug Fixes
+
+* use @rollup/plugin-terser ([19e858a](https://github.com/sweetalert2/sweetalert2/commit/19e858a16c9e7e87633220072bfffac648d4d7d4))
+
+## [11.6.3](https://github.com/sweetalert2/sweetalert2/compare/v11.6.2...v11.6.3) (2022-10-27)
+
+
+### Bug Fixes
+
+* add types to getInput.js ([db5f910](https://github.com/sweetalert2/sweetalert2/commit/db5f9104b82a65dd97e3370da58960b237d325d3))
+
+## [11.6.2](https://github.com/sweetalert2/sweetalert2/compare/v11.6.1...v11.6.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* simplify dev environment by replacing Gulp with Vite ([#2537](https://github.com/sweetalert2/sweetalert2/issues/2537)) ([f6bc48a](https://github.com/sweetalert2/sweetalert2/commit/f6bc48aa087c64a98e3fda2c35b62a3e6a32d78a)), closes [#2536](https://github.com/sweetalert2/sweetalert2/issues/2536)
+
+## [11.6.1](https://github.com/sweetalert2/sweetalert2/compare/v11.6.0...v11.6.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* **types:** add getIconContent() ([#2530](https://github.com/sweetalert2/sweetalert2/issues/2530)) ([f7f8a7d](https://github.com/sweetalert2/sweetalert2/commit/f7f8a7de43623effa5e563401ad79efab1a39aa2))
+
+# [11.6.0](https://github.com/sweetalert2/sweetalert2/compare/v11.5.2...v11.6.0) (2022-10-19)
+
+
+### Features
+
+* add getIconContent() method ([#2529](https://github.com/sweetalert2/sweetalert2/issues/2529)) ([6b6fa03](https://github.com/sweetalert2/sweetalert2/commit/6b6fa033d481f8d70d8c2aa2cbf1a7b0545aac9a))
+
+## [11.5.2](https://github.com/sweetalert2/sweetalert2/compare/v11.5.1...v11.5.2) (2022-10-15)
+
+
+### Bug Fixes
+
+* should not throw console warning for `{ allowOutsideClick: true }` since default value of `backdrop` is `true` ([#2524](https://github.com/sweetalert2/sweetalert2/issues/2524)) ([a95871e](https://github.com/sweetalert2/sweetalert2/commit/a95871e136a9d64942a9b9435c54dd205d8737bf))
+
+## [11.5.1](https://github.com/sweetalert2/sweetalert2/compare/v11.5.0...v11.5.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* types in timer.js ([#2511](https://github.com/sweetalert2/sweetalert2/issues/2511)) ([be69abe](https://github.com/sweetalert2/sweetalert2/commit/be69abecaaeb320424340c66ae795c4564eed190))
+
+# [11.5.0](https://github.com/sweetalert2/sweetalert2/compare/v11.4.38...v11.5.0) (2022-10-10)
+
+
+### Features
+
+* add ability to pass function as a template param ([#2519](https://github.com/sweetalert2/sweetalert2/issues/2519)) ([0a8d004](https://github.com/sweetalert2/sweetalert2/commit/0a8d004324b7adad8df7574cefe170aa63fd54b8))
+
+## [11.4.38](https://github.com/sweetalert2/sweetalert2/compare/v11.4.37...v11.4.38) (2022-10-06)
+
+
+### Bug Fixes
+
+* template params when typeof default value is undefined or string ([#2517](https://github.com/sweetalert2/sweetalert2/issues/2517)) ([53ced8c](https://github.com/sweetalert2/sweetalert2/commit/53ced8c6db3337ea34dfbe28f9916d8fa9d896fd))
+
+## [11.4.37](https://github.com/sweetalert2/sweetalert2/compare/v11.4.36...v11.4.37) (2022-10-02)
+
+
+### Bug Fixes
+
+* types in renderers ([#2501](https://github.com/sweetalert2/sweetalert2/issues/2501)) ([a4b79dd](https://github.com/sweetalert2/sweetalert2/commit/a4b79dd24942c4ad0b52dc55d69f3959a4e6a4a1))
+
+## [11.4.36](https://github.com/sweetalert2/sweetalert2/compare/v11.4.35...v11.4.36) (2022-10-01)
+
+
+### Bug Fixes
+
+* video/audio tags in Safari ([#2509](https://github.com/sweetalert2/sweetalert2/issues/2509)) ([cd1132e](https://github.com/sweetalert2/sweetalert2/commit/cd1132e1b3d880ad39bd5266d1356675dec9d05e))
+
+## [11.4.35](https://github.com/sweetalert2/sweetalert2/compare/v11.4.34...v11.4.35) (2022-09-28)
+
+
+### Bug Fixes
+
+* boolean params inn template ([#2506](https://github.com/sweetalert2/sweetalert2/issues/2506)) ([171f645](https://github.com/sweetalert2/sweetalert2/commit/171f6457a9b9958f2a86390371a06a4656ae3e5e))
+
+## [11.4.34](https://github.com/sweetalert2/sweetalert2/compare/v11.4.33...v11.4.34) (2022-09-26)
+
+
+### Bug Fixes
+
+* add types to inputUtils.js ([#2500](https://github.com/sweetalert2/sweetalert2/issues/2500)) ([816b7ce](https://github.com/sweetalert2/sweetalert2/commit/816b7ce21f37db9dbf2d41ee6b0dcac883264391))
+
+## [11.4.33](https://github.com/sweetalert2/sweetalert2/compare/v11.4.32...v11.4.33) (2022-09-13)
+
+
+### Bug Fixes
+
+* add types to enable-disable-elements.js ([#2495](https://github.com/sweetalert2/sweetalert2/issues/2495)) ([07ca6bb](https://github.com/sweetalert2/sweetalert2/commit/07ca6bb8487ea2c45a403d315cbabb760b367d3f))
+
+## [11.4.32](https://github.com/sweetalert2/sweetalert2/compare/v11.4.31...v11.4.32) (2022-09-07)
+
+
+### Bug Fixes
+
+* add types to src/SweetAlert.js ([#2494](https://github.com/sweetalert2/sweetalert2/issues/2494)) ([5430fcb](https://github.com/sweetalert2/sweetalert2/commit/5430fcbdf2ef4514eb6c0322e8e9cb2543e2062d))
+
+## [11.4.31](https://github.com/sweetalert2/sweetalert2/compare/v11.4.30...v11.4.31) (2022-09-06)
+
+
+### Bug Fixes
+
+* add types to getTemplateParams.js ([#2492](https://github.com/sweetalert2/sweetalert2/issues/2492)) ([60413f0](https://github.com/sweetalert2/sweetalert2/commit/60413f09300ec7bb0a09c65f058e15aa28282c59))
+
+## [11.4.30](https://github.com/sweetalert2/sweetalert2/compare/v11.4.29...v11.4.30) (2022-09-05)
+
+
+### Bug Fixes
+
+* add types to Timer.js ([#2482](https://github.com/sweetalert2/sweetalert2/issues/2482)) ([b785030](https://github.com/sweetalert2/sweetalert2/commit/b785030108b886f28b34d7f61747dbc51bb4e575))
+
+## [11.4.29](https://github.com/sweetalert2/sweetalert2/compare/v11.4.28...v11.4.29) (2022-08-20)
+
+
+### Bug Fixes
+
+* **toast:** html vertical alignment ([#2483](https://github.com/sweetalert2/sweetalert2/issues/2483)) ([374740f](https://github.com/sweetalert2/sweetalert2/commit/374740f76752d5a5799038590593d6bc34c4a9df))
+
+## [11.4.28](https://github.com/sweetalert2/sweetalert2/compare/v11.4.27...v11.4.28) (2022-08-17)
+
+
+### Bug Fixes
+
+* add types to iosFix.js ([#2481](https://github.com/sweetalert2/sweetalert2/issues/2481)) ([82e7411](https://github.com/sweetalert2/sweetalert2/commit/82e7411316a3efa647750802375938f2af1a97e5))
+
+## [11.4.27](https://github.com/sweetalert2/sweetalert2/compare/v11.4.26...v11.4.27) (2022-08-16)
+
+
+### Bug Fixes
+
+* add types to openPopup.js ([#2480](https://github.com/sweetalert2/sweetalert2/issues/2480)) ([de55163](https://github.com/sweetalert2/sweetalert2/commit/de55163d15974b53b2efd8f7cfc15a0029a68d04))
+
+## [11.4.26](https://github.com/sweetalert2/sweetalert2/compare/v11.4.25...v11.4.26) (2022-08-06)
+
+
+### Bug Fixes
+
+* add types to utils.js ([65081d0](https://github.com/sweetalert2/sweetalert2/commit/65081d02b1a714ecd27680ad400aa9c0bb87685f))
+
+## [11.4.25](https://github.com/sweetalert2/sweetalert2/compare/v11.4.24...v11.4.25) (2022-08-05)
+
+
+### Bug Fixes
+
+* add types to params.js ([#2473](https://github.com/sweetalert2/sweetalert2/issues/2473)) ([7c1c1a9](https://github.com/sweetalert2/sweetalert2/commit/7c1c1a94812ce88f669348b39479cffb23d1a34f))
+
 ## [11.4.24](https://github.com/sweetalert2/sweetalert2/compare/v11.4.23...v11.4.24) (2022-07-21)
 
 
@@ -15,23 +247,23 @@
 ## [11.4.22](https://github.com/sweetalert2/sweetalert2/compare/v11.4.21...v11.4.22) (2022-07-13)
 
 
-### ~~Bug Fixes~~
+### Bug Fixes
 
-~~* better description for Masyanya video ([e51a499](https://github.com/sweetalert2/sweetalert2/commit/e51a499ebe6ec60af806b03fa377aebbbddfe8b2))~~
+* better description for Masyanya video ([e51a499](https://github.com/sweetalert2/sweetalert2/commit/e51a499ebe6ec60af806b03fa377aebbbddfe8b2))
 
 ## [11.4.21](https://github.com/sweetalert2/sweetalert2/compare/v11.4.20...v11.4.21) (2022-07-13)
 
 
-### ~~Bug Fixes~~
+### Bug Fixes
 
-~~* add Masyanya's attempt to teach empathy to russians ([fc75aaf](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24))~~
+* add Masyanya's attempt to teach empathy to russians ([fc75aaf](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24))
 
-## ~~[11.4.20](https://github.com/sweetalert2/sweetalert2/compare/v11.4.19...v11.4.20) (2022-07-05)~~
+## [11.4.20](https://github.com/sweetalert2/sweetalert2/compare/v11.4.19...v11.4.20) (2022-07-05)
 
 
-### ~~Bug Fixes~~
+### Bug Fixes
 
-~~* better anti-war message for Russians ([#2462](https://github.com/sweetalert2/sweetalert2/issues/2462)) ([1ad0dd9](https://github.com/sweetalert2/sweetalert2/commit/1ad0dd97ee11bd472c381e4063a9ec8fa0d40be1))~~
+* better anti-war message for Russians ([#2462](https://github.com/sweetalert2/sweetalert2/issues/2462)) ([1ad0dd9](https://github.com/sweetalert2/sweetalert2/commit/1ad0dd97ee11bd472c381e4063a9ec8fa0d40be1))
 
 ## [11.4.19](https://github.com/sweetalert2/sweetalert2/compare/v11.4.18...v11.4.19) (2022-06-27)
 
@@ -40,12 +272,12 @@
 
 * auto-import styles in Vite ([#2459](https://github.com/sweetalert2/sweetalert2/issues/2459)) ([31a98d6](https://github.com/sweetalert2/sweetalert2/commit/31a98d6dee29b1e402e5fd2ea1ba7745737c03e8))
 
-## ~~[11.4.18](https://github.com/sweetalert2/sweetalert2/compare/v11.4.17...v11.4.18) (2022-06-19)~~
+## [11.4.18](https://github.com/sweetalert2/sweetalert2/compare/v11.4.17...v11.4.18) (2022-06-19)
 
 
-### ~~Bug Fixes~~
+### Bug Fixes
 
-~~* better check for user's language ([11bcd99](https://github.com/sweetalert2/sweetalert2/commit/11bcd99df5dcde17a2f36ca5493db8b5c53dfe7e)), closes [#2456](https://github.com/sweetalert2/sweetalert2/issues/2456)~~
+* better check for user's language ([11bcd99](https://github.com/sweetalert2/sweetalert2/commit/11bcd99df5dcde17a2f36ca5493db8b5c53dfe7e)), closes [#2456](https://github.com/sweetalert2/sweetalert2/issues/2456)
 
 ## [11.4.17](https://github.com/sweetalert2/sweetalert2/compare/v11.4.16...v11.4.17) (2022-05-24)
 
@@ -103,12 +335,12 @@
 
 * throw warning about invalid inputType for input: textarea ([a26e08a](https://github.com/sweetalert2/sweetalert2/commit/a26e08abb2c1bea27fffbc0cbfe434add2d88135))
 
-## ~~[11.4.9](https://github.com/sweetalert2/sweetalert2/compare/v11.4.8...v11.4.9) (2022-04-21)~~
+## [11.4.9](https://github.com/sweetalert2/sweetalert2/compare/v11.4.8...v11.4.9) (2022-04-21)
 
 
-### ~~Bug Fixes~~
+### Bug Fixes
 
-~~* add STOP WAR message for Russians ([#2428](https://github.com/sweetalert2/sweetalert2/issues/2428)) ([64825e4](https://github.com/sweetalert2/sweetalert2/commit/64825e44f7a67e3a8b43d0b37ad665cc7fd4f78f))~~
+* add STOP WAR message for Russians ([#2428](https://github.com/sweetalert2/sweetalert2/issues/2428)) ([64825e4](https://github.com/sweetalert2/sweetalert2/commit/64825e44f7a67e3a8b43d0b37ad665cc7fd4f78f))
 
 ## [11.4.8](https://github.com/sweetalert2/sweetalert2/compare/v11.4.7...v11.4.8) (2022-03-29)
 

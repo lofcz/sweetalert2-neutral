@@ -4,11 +4,10 @@
  * @typedef { HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement } Input
  * @typedef { 'input' | 'file' | 'range' | 'select' | 'radio' | 'checkbox' | 'textarea' } InputClass
  */
-
-import { swalClasses } from '../../classes.js'
-import { error, isPromise, warn } from '../../utils.js'
-import * as dom from '../../dom/index.js'
 import privateProps from '../../../privateProps.js'
+import { swalClasses } from '../../classes.js'
+import * as dom from '../../dom/index.js'
+import { error, isPromise, warn } from '../../utils.js'
 
 /** @type {InputClass[]} */
 const inputClasses = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea']
@@ -50,9 +49,10 @@ export const renderInput = (instance, params) => {
  */
 const showInput = (params) => {
   if (!renderInputType[params.input]) {
-    return error(
+    error(
       `Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "${params.input}"`
     )
+    return
   }
 
   const inputContainer = getInputContainer(params.input)
@@ -154,7 +154,7 @@ const checkAndSetInputValue = (input, inputValue) => {
   }
 }
 
-/** @type Record<string, (input: Input | HTMLElement, params: SweetAlertOptions) => Input> */
+/** @type {Record<string, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */
 const renderInputType = {}
 
 /**

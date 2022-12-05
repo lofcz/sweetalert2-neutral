@@ -1,7 +1,10 @@
 import globalState from '../globalState.js'
-import privateProps from '../privateProps.js'
 import privateMethods from '../privateMethods.js'
+import privateProps from '../privateProps.js'
 
+/**
+ * Dispose the current SweetAlert2 instance
+ */
 export function _destroy() {
   const domCache = privateProps.domCache.get(this)
   const innerParams = privateProps.innerParams.get(this)

@@ -1,51 +1,151 @@
-# Sweetalert 2 NEUTRAL
+<a href="https://sweetalert2.github.io/">
+  <img src="./assets/swal2-logo.png" width="498" alt="SweetAlert2">
+</a>
 
-This drop-in replacement fixes recent changes in Swal2 forcing Limonte's political views upon end-users, breaking automated tests and causing other harm along the way.
-   
-[There is now a 10% chance of displaying an unwanted banner & video on your site for visitors based on navigator.language if you are using upstream Swal2.](https://github.com/sweetalert2/sweetalert2/blob/main/src/SweetAlert.js#L235-L279)  
-  
-See: https://security.snyk.io/vuln/SNYK-JS-SWEETALERT2-2774674, https://github.com/sweetalert2/sweetalert2/pull/2462   
-Swal2: https://github.com/sweetalert2/sweetalert2  
+A beautiful, responsive, customizable, accessible (WAI-ARIA) replacement <br> for JavaScript's popup boxes. Zero dependencies.
 
-Install:
-```
-npm i sweetalert2-neutral
-```
-or use [pre-built binaries](https://github.com/lofcz/sweetalert2-neutral/releases).
+---
 
-### FAQ
+### [Installation](https://sweetalert2.github.io/#download) | [Usage](https://sweetalert2.github.io/#usage) | [Examples](https://sweetalert2.github.io/#examples) | [Recipe gallery](https://sweetalert2.github.io/recipe-gallery/) | [Themes](https://github.com/sweetalert2/sweetalert2-themes) | [React](https://github.com/sweetalert2/sweetalert2-react-content) | [Angular](https://github.com/sweetalert2/ngx-sweetalert2) | [:heart: Donate](https://sweetalert2.github.io/#donations)
 
-> I am a Russian citizen, should I merge to Swal2-NEUTRAL?
+---
 
-Most certainly. Currently you could (in theory) end up in prison up for 20 years. See [the law](http://www.consultant.ru/document/cons_doc_LAW_10699/4618fd95c30a6fbe7717ceaebf64f082e735c9ad/).  
-[Limonte acknowledged this with sarcasm about npm ecosystem security.](https://github.com/sweetalert2/sweetalert2/pull/2462#issuecomment-1184357588)
+:moneybag: [Get $100 in free credits with DigitalOcean!](https://m.do.co/c/12907f2ba0bf)
 
-> I am a non-Russian citizen, should I merge to Swal2-NEUTRAL?
+---
 
-Most certainly. By merging you will mitigate the 10% chance of unwanted HTML being injected to your site. See [this issue](https://github.com/sweetalert2/sweetalert2/issues/2466) or [this one](https://github.com/sweetalert2/sweetalert2/issues/2474) for the confusion this can create.
+Important notice about usage of this software for `.ru`, `.su`, and `.рф` domain zones
+--------------------------------------------------------------------------------------
 
-> I want to have anti-war messages displayed on my site, should I merge to Swal2-NEUTRAL?
+As a consequece of illegal war in Ukraine, the usage of this repository and related npm package [sweetalert2](https://www.npmjs.com/package/sweetalert2) is prohibited for `.ru`, `.su`, and `.рф` domain zones.
 
-Most certainly. By merging you can decide which anti-war messages you want to display, instead of relying on [volatile & abruptly changing](https://github.com/sweetalert2/sweetalert2/commit/fc75aafc9b723740122e4afc880eefeec7155d24) implementation by Limonte.
+Including this software in any domain in `.ru`, `.su`, and `.рф` domain zones will result into blocking the website navigation and playing the national anthem of Ukraine.
 
-> Are there any other changes apart from removing "anti-war" messages?
+This behavior is classified as [protestware](https://snyk.io/blog/protestware-open-source-types-impact/) and this project is listed in [GitHub Advisory Database](https://github.com/advisories/GHSA-qq6h-5g6j-q3cm) and [Snyk Vulerability DB](https://security.snyk.io/package/npm/sweetalert2/11.5.2).
 
-No.
+Sponsors
+--------
 
-> Are there any other benefits apart from unwanted banners not showing up on my site?
+For all questions related to sponsorship please contact me via email limon.monte@protonmail.com
 
-Yes, the library is ~5% smaller, thus less traffic is used and your site loads faster.
+<table>
+<tr>
+<td align="center"><a href="SPONSORS.md#sponsors"><img src="https://sweetalert2.github.io/images/plus.png" width="80"><br>Become a sponsor</a></td>
+<td align="center"><a href="https://www.borrow.fi/luottotili/"><img src="https://sweetalert2.github.io/images/sponsors/borrowfi.png" width="80"><br>luottotili heti</a>
+<td align="center"><a href="https://mybettingcanada.com/"><img src="https://sweetalert2.github.io/images/sponsors/mybettingcanada.png" width="80"><br>My Betting Canada</a>
+<td align="center"><a href="https://kasynoonlineblik.pl/"><img src="https://sweetalert2.github.io/images/sponsors/kasynoonlineblik.png" width="80"><br>Kasyno Online Blik</a>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://w88yesbet.com/"><img src="https://sweetalert2.github.io/images/sponsors/w88yesbet.png" width="80"><br>W88YES</a>
+<td align="center"><a href="https://rushradar.com/"><img src="https://sweetalert2.github.io/images/sponsors/rushradar.png" width="80"><br>RushRadar:&nbsp;Articles, <br>Reviews,&nbsp;and&nbsp;Discounts</a>
+<td align="center"><a href="https://iganony.com/"><img src="https://sweetalert2.github.io/images/sponsors/iganony.png" width="80"><br>IgAnony</a>
+<td align="center"><a href="https://www.realspyapps.com/"><img src="https://sweetalert2.github.io/images/sponsors/realspyapps.jpeg" width="80"><br>Real Spy Apps</a>
+<td align="center"><a href="https://www.istartips.com/"><img src="https://sweetalert2.github.io/images/sponsors/istartips.png" width="80"><br>iStarTips</a>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.evguru.com.my/"><img src="https://sweetalert2.github.io/images/sponsors/evguru.png" width="80"><br>EvGuru EV Chargers</a></td>
+<td align="center"><a href="https://bestforandroid.com/"><img src="https://sweetalert2.github.io/images/sponsors/bestforandroid.png" width="80"><br>Best For Android</a></td>
+<td align="center"><a href="https://celltrackingapps.com/"><img src="https://sweetalert2.github.io/images/sponsors/celltrackingapps.png" width="80"><br>Phone Tracking Apps</a></td>
+<td align="center"><a href="https://flowcrypt.com/"><img src="https://avatars2.githubusercontent.com/u/28631236?s=80&v=4" width="80"><br>FlowCrypt</a></td>
+<td align="center"><a href="https://www.mybitcoinslots.com/"><img src="https://sweetalert2.github.io/images/sponsors/mybitcoinslots.png" width="80"><br>My Bitcoin slots</a></td>
+<td align="center"><a href="https://www.vegega.com/"><img src="https://sweetalert2.github.io/images/sponsors/vegega.jpeg" width="80"><br>Metal Raised Garden Bed</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://phatoil.com/"><img src="https://sweetalert2.github.io/images/sponsors/phatoil.png" width="80"><br>Pure Essential Oil</a></td>
+<td align="center"><a href="https://torcstark.com/"><img src="https://sweetalert2.github.io/images/sponsors/torc-stark.png" width="80"><br>TorcStark</a></td>
+<td align="center"><a href="https://halvinlaina.fi/"><img src="https://sweetalert2.github.io/images/sponsors/halvinlaina.png" width="80"><br>Halvin Laina</a></td>
+<td align="center"><a href="https://github.com/tiagostutz"><img src="https://avatars0.githubusercontent.com/u/3986989?s=80&v=4" width="80"><br>Tiago de Oliveira Stutz</a></td>
+</tr>
+</table>
 
-> How do I migrate to Swal2-NEUTRAL?
+NSFW Sponsors
+-------------
 
-- When Swal2 is installed via npm: `npm uninstall sweetalert2` `npm i sweetalert2-neutral`
-- When serving Swal2 via local files: [replace Swal2 JS & CSS pre-built files](https://github.com/lofcz/sweetalert2-neutral/releases)
+<table>
+<tr>
+<td align="center"><a href="SPONSORS.md#sponsors"><img src="https://sweetalert2.github.io/images/plus.png" width="80"><br>Become a NSFW sponsor</a></td>
+<td align="center"><a href="https://www.onahole.com/"><img src="https://sweetalert2.github.io/images/sponsors/onahole.png" width="80"><br>hentai sex toys</a></td>
+<td align="center"><a href="https://www.nakedoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/nakedoll.png" width="80"><br>Nake Doll</a></td>
+<td align="center"><a href="https://blowupdollshop.com/inflatable-sex-doll/"><img src="https://sweetalert2.github.io/images/sponsors/blowupdollshop.png" width="80"><br>Inflatable sex doll</a></td>
+<td align="center"><a href="https://sextoystop.com/"><img src="https://sweetalert2.github.io/images/sponsors/sextoystop.png" width="80"><br>Sex Doll Torso</a></td>
+<td align="center"><a href="https://sexydollies.com/"><img src="https://sweetalert2.github.io/images/sponsors/sexydollies.png" width="80"><br>porn sexdoll</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://bululusexdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/bululusexdoll.png" width="80"><br>cheap sex doll</a></td>
+<td align="center"><a href="https://bululu.shop/"><img src="https://sweetalert2.github.io/images/sponsors/bululu.png" width="80"><br>BULULU</a></td>
+<td align="center"><a href="https://www.xndoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/xndoll.jpeg" width="80"><br>XNDOLL</a></td>
+<td align="center"><a href="https://sexsitoys.com/"><img src="https://sweetalert2.github.io/images/sponsors/sexsitoys.jpg" width="80"><br>Sexsi Toys</a></td>
+<td align="center"><a href="https://www.sextorso.com/"><img src="https://sweetalert2.github.io/images/sponsors/sextorso.png" width="80"><br>sexdoll torso</a></td>
+<td align="center"><a href="https://www.minisexdoll.com/anime-sexdoll/"><img src="https://sweetalert2.github.io/images/sponsors/minisexdoll.png" width="80"><br>anime sexdoll</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.myminisexdoll.com/cheap-sex-dolls/"><img src="https://sweetalert2.github.io/images/sponsors/myminisexdoll.png" width="80"><br>cheap sexdoll</a></td>
+<td align="center"><a href="https://www.hugedildo.com/"><img src="https://sweetalert2.github.io/images/sponsors/hugedildo.png" width="80"><br>huge dildo</a></td>
+<td align="center"><a href="https://www.uusexdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/uusexdoll.png" width="80"><br>sexdoll</a></td>
+<td align="center"><a href="https://www.uusextoy.com/best-pocket-pussy/"><img src="https://sweetalert2.github.io/images/sponsors/uusextoy.png" width="80"><br>best pocket pussy</a></td>
+<td align="center"><a href="https://www.lovedolltorso.com/female-torso-sex-doll/"><img src="https://sweetalert2.github.io/images/sponsors/lovedolltorso.png" width="80"><br>female torso sex doll</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.mymasturbators.com/"><img src="https://sweetalert2.github.io/images/sponsors/mymasturbators.png" width="80"><br>male masturbator</a></td>
+<td align="center"><a href="https://www.buypenispump.com/"><img src="https://sweetalert2.github.io/images/sponsors/buypenispump.png" width="80"><br>penis pump</a></td>
+<td align="center"><a href="https://cutesexdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/cutesexdoll.jpg" width="80"><br>Cute Sex Doll</a></td>
+<td align="center"><a href="https://toyhero.com/"><img src="https://sweetalert2.github.io/images/sponsors/toyhero.png" width="80"><br>Adult Toys</a></td>
+<td align="center"><a href="https://www.sexysexdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/sexysexdoll.png" width="80"><br>Sexy Sex Doll</a></td>
+<td align="center"><a href="https://www.dollnight.com/cheap-sex-doll"><img src="https://sweetalert2.github.io/images/sponsors/dollnight.jpeg" width="80"><br>Cheap Sex Doll</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.sexvibrators.in/"><img src="https://sweetalert2.github.io/images/sponsors/sexvibrator.png" width="80"><br>Sex Vibrators</a></td>
+<td align="center"><a href="https://www.viva-awa.com/"><img src="https://sweetalert2.github.io/images/sponsors/viva-awa.png" width="80"><br>Viva Awa</a></td>
+<td align="center"><a href="https://www.sensualdolls.com/"><img src="https://sweetalert2.github.io/images/sponsors/sensualdolls.png" width="80"><br>Sensual Dolls</a></td>
+<td align="center"><a href="https://www.bestrealdoll.com/collections/us-warehouse"><img src="https://sweetalert2.github.io/images/sponsors/bestrealdoll.jpeg" width="80"><br>BestRealDoll</a></td>
+<td align="center"><a href="https://www.sexdolltech.com/product-category/us-warehouse/"><img src="https://sweetalert2.github.io/images/sponsors/sexdolltech.jpeg" width="80"><br>SexDollTech</a></td>
+<td align="center"><a href="https://rosewives.com/"><img src="https://sweetalert2.github.io/images/sponsors/rosewives.png" width="80"><br>Rose Wives</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.sexdollsoff.com/"><img src="https://sweetalert2.github.io/images/sponsors/sexdollsoff.png" width="80"><br>SexDollsOff</a></td>
+<td align="center"><a href="https://realsexdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/realsexdoll.png" width="80"><br>RealSexDoll</a></td>
+<td align="center"><a href="https://www.yourdoll.com/"><img src="https://sweetalert2.github.io/images/sponsors/yourdoll.jpg" width="80"><br>Your Doll</a></td>
+<td align="center"><a href="https://anniesdollhouse.com/"><img src="https://sweetalert2.github.io/images/sponsors/annies-dollhouse.png" width="80"><br>Annie's Dollhouse</a></td>
+<td align="center"><a href="https://sexdollcenter.vip/"><img src="https://sweetalert2.github.io/images/sponsors/sexdollcenter.png" width="80"><br>Sex Doll Center</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://vsdoll.net/"><img src="https://sweetalert2.github.io/images/sponsors/vsdoll.png" width="80"><br>VSDoll</a></td>
+<td align="center"><a href="https://sexangelbaby.com/"><img src="https://sweetalert2.github.io/images/sponsors/sexangelbaby.png" width="80"><br>SexAngelbaby</a></td>
+<td align="center"><a href="https://theadulttoyfinder.com/"><img src="https://sweetalert2.github.io/images/sponsors/theadulttoyfinder.png" width="80"><br>The Adult Toy Finder</a></td>
+<td align="center"><a href="https://www.mysextoyguide.com/"><img src="https://sweetalert2.github.io/images/sponsors/my-sex-toy-guide.jpg" width="80"><br>My Sex Toy Guide</a></td>
+</tr>
+</table>
+<table>
+<tr>
+<td align="center"><a href="https://www.bestblowjobmachines.com/"><img src="https://sweetalert2.github.io/images/sponsors/best-blowjob-machines.jpg" width="80"><br>Best Blowjob Machines</a></td>
+<td align="center"><a href="https://sextoycollective.com/"><img src="https://sweetalert2.github.io/images/sponsors/sextoycollective.jpg" width="80"><br>STC</a></td>
+<td align="center"><a href="https://doctorclimax.com/"><img src="https://sweetalert2.github.io/images/sponsors/doctorclimax.png" width="80"><br>DoctorClimax</a></td>
+</tr>
+</table>
 
-### Aftermath
+Support and Donations
+---------------------
 
-The original fork annoucement accumulated over 20 positive reactions, originally even Limonte reacted with "thumbs up". A few days later he changed his mind and resorted to censorship, deleting the annoucement:
+Has SweetAlert2 helped you create an amazing application? You can show your support via [GitHub Sponsors](https://github.com/sponsors/limonte)
 
-![image](https://user-images.githubusercontent.com/10260230/180612664-87a2b27b-7509-4b92-8caa-0e62a6d78f53.png)
+Alternative ways for donations (PayPal, cryptocurrencies, etc.) are listed here: https://sweetalert2.github.io/#donations
 
-<sub>Here used to be a note about how to sponsor the original Swal2 library, but due to censorship used by Limonte, this information is now removed.</sub>
-
+### [Hall of Donators :trophy:](DONATIONS.md)
