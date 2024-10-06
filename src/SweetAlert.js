@@ -15,11 +15,21 @@ import { getTemplateParams } from './utils/getTemplateParams.js'
 import { openPopup } from './utils/openPopup.js'
 import defaultParams, { showWarningsForParams } from './utils/params.js'
 import setParameters from './utils/setParameters.js'
-import { callIfFunction } from './utils/utils.js'
+import { callIfFunction, warnAboutDeprecation } from './utils/utils.js'
 
+/** @type {SweetAlert} */
 let currentInstance
 
-class SweetAlert {
+export class SweetAlert {
+  /**
+   * @type {Promise<SweetAlertResult>}
+   */
+  #promise
+
+  /**
+   * @param {...any} args
+   * @this {SweetAlert}
+   */
   constructor(...args) {
     // Prevent run in Node env
     if (typeof window === 'undefined') {
@@ -31,26 +41,25 @@ class SweetAlert {
     // @ts-ignore
     const outerParams = Object.freeze(this.constructor.argsToParams(args))
 
-    Object.defineProperties(this, {
-      params: {
-        value: outerParams,
-        writable: false,
-        enumerable: true,
-        configurable: true,
-      },
-    })
+    /** @type {Readonly<SweetAlertOptions>} */
+    this.params = outerParams
 
-    // @ts-ignore
-    const promise = currentInstance._main(currentInstance.params)
-    privateProps.promise.set(this, promise)
+    /** @type {boolean} */
+    this.isAwaitingPromise = false
+
+    this.#promise = this._main(currentInstance.params)
   }
 
   _main(userParams, mixinParams = {}) {
     showWarningsForParams(Object.assign({}, mixinParams, userParams))
 
     if (globalState.currentInstance) {
-      // @ts-ignore
+      const swalPromiseResolve = privateMethods.swalPromiseResolve.get(globalState.currentInstance)
+      const { isAwaitingPromise } = globalState.currentInstance
       globalState.currentInstance._destroy()
+      if (!isAwaitingPromise) {
+        swalPromiseResolve({ isDismissed: true })
+      }
       if (dom.isModal()) {
         unsetAriaHidden()
       }
@@ -82,18 +91,16 @@ class SweetAlert {
 
   // `catch` cannot be the name of a module export, so we define our thenable methods here instead
   then(onFulfilled) {
-    const promise = privateProps.promise.get(this)
-    return promise.then(onFulfilled)
+    return this.#promise.then(onFulfilled)
   }
 
   finally(onFinally) {
-    const promise = privateProps.promise.get(this)
-    return promise.finally(onFinally)
+    return this.#promise.finally(onFinally)
   }
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {DomCache} domCache
  * @param {SweetAlertOptions} innerParams
  * @returns {Promise}
@@ -105,7 +112,6 @@ const swalPromise = (instance, domCache, innerParams) => {
      * @param {DismissReason} dismiss
      */
     const dismissWith = (dismiss) => {
-      // @ts-ignore
       instance.close({ isDismissed: true, dismiss })
     }
 
@@ -125,13 +131,12 @@ const swalPromise = (instance, domCache, innerParams) => {
     }
 
     domCache.closeButton.onclick = () => {
-      // @ts-ignore
       dismissWith(DismissReason.close)
     }
 
-    handlePopupClick(instance, domCache, dismissWith)
+    handlePopupClick(innerParams, domCache, dismissWith)
 
-    addKeydownHandler(instance, globalState, innerParams, dismissWith)
+    addKeydownHandler(globalState, innerParams, dismissWith)
 
     handleInputOptionsAndValue(instance, innerParams)
 
@@ -158,11 +163,17 @@ const prepareParams = (userParams, mixinParams) => {
   const params = Object.assign({}, defaultParams, mixinParams, templateParams, userParams) // precedence is described in #2131
   params.showClass = Object.assign({}, defaultParams.showClass, params.showClass)
   params.hideClass = Object.assign({}, defaultParams.hideClass, params.hideClass)
+  if (params.animation === false) {
+    params.showClass = {
+      backdrop: 'swal2-noanimation',
+    }
+    params.hideClass = {}
+  }
   return params
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @returns {DomCache}
  */
 const populateDomCache = (instance) => {
@@ -210,6 +221,15 @@ const setupTimer = (globalState, innerParams, dismissWith) => {
 }
 
 /**
+ * Initialize focus in the popup:
+ *
+ * 1. If `toast` is `true`, don't steal focus from the document.
+ * 2. Else if there is an [autofocus] element, focus it.
+ * 3. Else if `focusConfirm` is `true` and confirm button is visible, focus it.
+ * 4. Else if `focusDeny` is `true` and deny button is visible, focus it.
+ * 5. Else if `focusCancel` is `true` and cancel button is visible, focus it.
+ * 6. Else focus the first focusable element in a popup (if any).
+ *
  * @param {DomCache} domCache
  * @param {SweetAlertOptions} innerParams
  */
@@ -217,15 +237,37 @@ const initFocus = (domCache, innerParams) => {
   if (innerParams.toast) {
     return
   }
-
+  // TODO: this is dumb, remove `allowEnterKey` param in the next major version
   if (!callIfFunction(innerParams.allowEnterKey)) {
+    warnAboutDeprecation('allowEnterKey')
     blurActiveElement()
     return
   }
 
-  if (!focusButton(domCache, innerParams)) {
-    setFocus(innerParams, -1, 1)
+  if (focusAutofocus(domCache)) {
+    return
   }
+
+  if (focusButton(domCache, innerParams)) {
+    return
+  }
+
+  setFocus(-1, 1)
+}
+
+/**
+ * @param {DomCache} domCache
+ * @returns {boolean}
+ */
+const focusAutofocus = (domCache) => {
+  const autofocusElements = domCache.popup.querySelectorAll('[autofocus]')
+  for (const autofocusElement of autofocusElements) {
+    if (autofocusElement instanceof HTMLElement && dom.isVisible(autofocusElement)) {
+      autofocusElement.focus()
+      return true
+    }
+  }
+  return false
 }
 
 /**
@@ -259,7 +301,22 @@ const blurActiveElement = () => {
 }
 
 // Assign instance methods from src/instanceMethods/*.js to prototype
-Object.assign(SweetAlert.prototype, instanceMethods)
+SweetAlert.prototype.disableButtons = instanceMethods.disableButtons
+SweetAlert.prototype.enableButtons = instanceMethods.enableButtons
+SweetAlert.prototype.getInput = instanceMethods.getInput
+SweetAlert.prototype.disableInput = instanceMethods.disableInput
+SweetAlert.prototype.enableInput = instanceMethods.enableInput
+SweetAlert.prototype.hideLoading = instanceMethods.hideLoading
+SweetAlert.prototype.disableLoading = instanceMethods.disableLoading
+SweetAlert.prototype.showValidationMessage = instanceMethods.showValidationMessage
+SweetAlert.prototype.resetValidationMessage = instanceMethods.resetValidationMessage
+SweetAlert.prototype.close = instanceMethods.close
+SweetAlert.prototype.closePopup = instanceMethods.closePopup
+SweetAlert.prototype.closeModal = instanceMethods.closeModal
+SweetAlert.prototype.closeToast = instanceMethods.closeToast
+SweetAlert.prototype.rejectPromise = instanceMethods.rejectPromise
+SweetAlert.prototype.update = instanceMethods.update
+SweetAlert.prototype._destroy = instanceMethods._destroy
 
 // Assign static methods from src/staticMethods/*.js to constructor
 Object.assign(SweetAlert, staticMethods)
@@ -271,14 +328,15 @@ Object.keys(instanceMethods).forEach((key) => {
    * @returns {any | undefined}
    */
   SweetAlert[key] = function (...args) {
-    if (currentInstance) {
+    if (currentInstance && currentInstance[key]) {
       return currentInstance[key](...args)
     }
+    return null
   }
 })
 
 SweetAlert.DismissReason = DismissReason
 
-SweetAlert.version = '11.6.15'
+SweetAlert.version = '11.14.1'
 
 export default SweetAlert

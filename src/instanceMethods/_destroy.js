@@ -23,16 +23,16 @@ export function _destroy() {
   if (typeof innerParams.didDestroy === 'function') {
     innerParams.didDestroy()
   }
+  globalState.eventEmitter.emit('didDestroy')
   disposeSwal(this)
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  */
 const disposeSwal = (instance) => {
   disposeWeakMaps(instance)
   // Unset this.params so GC will dispose it (#1569)
-  // @ts-ignore
   delete instance.params
   // Unset globalState props so GC will dispose globalState (#1569)
   delete globalState.keydownHandler
@@ -42,23 +42,41 @@ const disposeSwal = (instance) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  */
 const disposeWeakMaps = (instance) => {
   // If the current instance is awaiting a promise result, we keep the privateMethods to call them once the promise result is retrieved #2335
-  // @ts-ignore
-  if (instance.isAwaitingPromise()) {
+  if (instance.isAwaitingPromise) {
     unsetWeakMaps(privateProps, instance)
-    privateProps.awaitingPromise.set(instance, true)
+    instance.isAwaitingPromise = true
   } else {
     unsetWeakMaps(privateMethods, instance)
     unsetWeakMaps(privateProps, instance)
+
+    delete instance.isAwaitingPromise
+    // Unset instance methods
+    delete instance.disableButtons
+    delete instance.enableButtons
+    delete instance.getInput
+    delete instance.disableInput
+    delete instance.enableInput
+    delete instance.hideLoading
+    delete instance.disableLoading
+    delete instance.showValidationMessage
+    delete instance.resetValidationMessage
+    delete instance.close
+    delete instance.closePopup
+    delete instance.closeModal
+    delete instance.closeToast
+    delete instance.rejectPromise
+    delete instance.update
+    delete instance._destroy
   }
 }
 
 /**
  * @param {object} obj
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  */
 const unsetWeakMaps = (obj, instance) => {
   for (const i in obj) {

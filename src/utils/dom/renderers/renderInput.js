@@ -13,16 +13,23 @@ import { error, isPromise, warn } from '../../utils.js'
 const inputClasses = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea']
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {SweetAlertOptions} params
  */
 export const renderInput = (instance, params) => {
   const popup = dom.getPopup()
+  if (!popup) {
+    return
+  }
   const innerParams = privateProps.innerParams.get(instance)
   const rerender = !innerParams || params.input !== innerParams.input
 
   inputClasses.forEach((inputClass) => {
     const inputContainer = dom.getDirectChildByClass(popup, swalClasses[inputClass])
+
+    if (!inputContainer) {
+      return
+    }
 
     // set attributes
     setAttributes(inputClass, params.inputAttributes)
@@ -48,21 +55,29 @@ export const renderInput = (instance, params) => {
  * @param {SweetAlertOptions} params
  */
 const showInput = (params) => {
+  if (!params.input) {
+    return
+  }
+
   if (!renderInputType[params.input]) {
-    error(
-      `Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "${params.input}"`
-    )
+    error(`Unexpected type of input! Expected ${Object.keys(renderInputType).join(' | ')}, got "${params.input}"`)
     return
   }
 
   const inputContainer = getInputContainer(params.input)
+  if (!inputContainer) {
+    return
+  }
+
   const input = renderInputType[params.input](inputContainer, params)
   dom.show(inputContainer)
 
   // input autofocus
-  setTimeout(() => {
-    dom.focusInput(input)
-  })
+  if (params.inputAutoFocus) {
+    setTimeout(() => {
+      dom.focusInput(input)
+    })
+  }
 }
 
 /**
@@ -71,7 +86,7 @@ const showInput = (params) => {
 const removeAttributes = (input) => {
   for (let i = 0; i < input.attributes.length; i++) {
     const attrName = input.attributes[i].name
-    if (!['type', 'value', 'style'].includes(attrName)) {
+    if (!['id', 'type', 'value', 'style'].includes(attrName)) {
       input.removeAttribute(attrName)
     }
   }
@@ -82,7 +97,12 @@ const removeAttributes = (input) => {
  * @param {SweetAlertOptions['inputAttributes']} inputAttributes
  */
 const setAttributes = (inputClass, inputAttributes) => {
-  const input = dom.getInput(dom.getPopup(), inputClass)
+  const popup = dom.getPopup()
+  if (!popup) {
+    return
+  }
+
+  const input = dom.getInput(popup, inputClass)
   if (!input) {
     return
   }
@@ -98,9 +118,12 @@ const setAttributes = (inputClass, inputAttributes) => {
  * @param {SweetAlertOptions} params
  */
 const setCustomClass = (params) => {
+  if (!params.input) {
+    return
+  }
   const inputContainer = getInputContainer(params.input)
-  if (typeof params.customClass === 'object') {
-    dom.addClass(inputContainer, params.customClass.input)
+  if (inputContainer) {
+    dom.applyCustomClass(inputContainer, params, 'input')
   }
 }
 
@@ -109,7 +132,7 @@ const setCustomClass = (params) => {
  * @param {SweetAlertOptions} params
  */
 const setInputPlaceholder = (input, params) => {
-  if (!input.placeholder || params.inputPlaceholder) {
+  if (!input.placeholder && params.inputPlaceholder) {
     input.placeholder = params.inputPlaceholder
   }
 }
@@ -121,7 +144,6 @@ const setInputPlaceholder = (input, params) => {
  */
 const setInputLabel = (input, prependTo, params) => {
   if (params.inputLabel) {
-    input.id = swalClasses.input
     const label = document.createElement('label')
     const labelClass = swalClasses['input-label']
     label.setAttribute('for', input.id)
@@ -135,11 +157,16 @@ const setInputLabel = (input, prependTo, params) => {
 }
 
 /**
- * @param {SweetAlertOptions['input']} inputType
- * @returns {HTMLElement}
+ * @param {SweetAlertInput} inputType
+ * @returns {HTMLElement | undefined}
  */
 const getInputContainer = (inputType) => {
-  return dom.getDirectChildByClass(dom.getPopup(), swalClasses[inputType] || swalClasses.input)
+  const popup = dom.getPopup()
+  if (!popup) {
+    return
+  }
+
+  return dom.getDirectChildByClass(popup, swalClasses[/** @type {SwalClass} */ (inputType)] || swalClasses.input)
 }
 
 /**
@@ -154,7 +181,7 @@ const checkAndSetInputValue = (input, inputValue) => {
   }
 }
 
-/** @type {Record<string, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */
+/** @type {Record<SweetAlertInput, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */
 const renderInputType = {}
 
 /**
@@ -168,6 +195,13 @@ renderInputType.text =
   renderInputType.number =
   renderInputType.tel =
   renderInputType.url =
+  renderInputType.search =
+  renderInputType.date =
+  renderInputType['datetime-local'] =
+  renderInputType.time =
+  renderInputType.week =
+  renderInputType.month =
+    /** @type {(input: Input | HTMLElement, params: SweetAlertOptions) => Input} */
     (input, params) => {
       checkAndSetInputValue(input, params.inputValue)
       setInputLabel(input, input, params)
@@ -238,10 +272,9 @@ renderInputType.radio = (radio) => {
 renderInputType.checkbox = (checkboxContainer, params) => {
   const checkbox = dom.getInput(dom.getPopup(), 'checkbox')
   checkbox.value = '1'
-  checkbox.id = swalClasses.checkbox
   checkbox.checked = Boolean(params.inputValue)
   const label = checkboxContainer.querySelector('span')
-  dom.setInnerHtml(label, params.inputPlaceholder)
+  dom.setInnerHtml(label, params.inputPlaceholder || params.inputLabel)
   return checkbox
 }
 
@@ -268,11 +301,15 @@ renderInputType.textarea = (textarea, params) => {
     if ('MutationObserver' in window) {
       const initialPopupWidth = parseInt(window.getComputedStyle(dom.getPopup()).width)
       const textareaResizeHandler = () => {
+        // check if texarea is still in document (i.e. popup wasn't closed in the meantime)
+        if (!document.body.contains(textarea)) {
+          return
+        }
         const textareaWidth = textarea.offsetWidth + getMargin(textarea)
         if (textareaWidth > initialPopupWidth) {
           dom.getPopup().style.width = `${textareaWidth}px`
         } else {
-          dom.getPopup().style.width = null
+          dom.applyNumericalStyle(dom.getPopup(), 'width', params.width)
         }
       }
       new MutationObserver(textareaResizeHandler).observe(textarea, {

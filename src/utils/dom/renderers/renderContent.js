@@ -2,11 +2,16 @@ import * as dom from '../../dom/index.js'
 import { renderInput } from './renderInput.js'
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {SweetAlertOptions} params
  */
 export const renderContent = (instance, params) => {
   const htmlContainer = dom.getHtmlContainer()
+  if (!htmlContainer) {
+    return
+  }
+
+  dom.showWhenInnerHtmlPresent(htmlContainer)
 
   dom.applyCustomClass(htmlContainer, params, 'htmlContainer')
 

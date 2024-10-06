@@ -1,11 +1,14 @@
-import privateProps from './privateProps.js'
 import { DismissReason } from './utils/DismissReason.js'
 import { callIfFunction } from './utils/utils.js'
 
-export const handlePopupClick = (instance, domCache, dismissWith) => {
-  const innerParams = privateProps.innerParams.get(instance)
+/**
+ * @param {SweetAlertOptions} innerParams
+ * @param {DomCache} domCache
+ * @param {Function} dismissWith
+ */
+export const handlePopupClick = (innerParams, domCache, dismissWith) => {
   if (innerParams.toast) {
-    handleToastClick(instance, domCache, dismissWith)
+    handleToastClick(innerParams, domCache, dismissWith)
   } else {
     // Ignore click events that had mousedown on the popup but mouseup on the container
     // This can happen when the user drags a slider
@@ -14,14 +17,18 @@ export const handlePopupClick = (instance, domCache, dismissWith) => {
     // Ignore click events that had mousedown on the container but mouseup on the popup
     handleContainerMousedown(domCache)
 
-    handleModalClick(instance, domCache, dismissWith)
+    handleModalClick(innerParams, domCache, dismissWith)
   }
 }
 
-const handleToastClick = (instance, domCache, dismissWith) => {
+/**
+ * @param {SweetAlertOptions} innerParams
+ * @param {DomCache} domCache
+ * @param {Function} dismissWith
+ */
+const handleToastClick = (innerParams, domCache, dismissWith) => {
   // Closing toast by internal click
   domCache.popup.onclick = () => {
-    const innerParams = privateProps.innerParams.get(instance)
     if (innerParams && (isAnyButtonShown(innerParams) || innerParams.timer || innerParams.input)) {
       return
     }
@@ -30,11 +37,11 @@ const handleToastClick = (instance, domCache, dismissWith) => {
 }
 
 /**
- * @param {*} innerParams
+ * @param {SweetAlertOptions} innerParams
  * @returns {boolean}
  */
 const isAnyButtonShown = (innerParams) => {
-  return (
+  return !!(
     innerParams.showConfirmButton ||
     innerParams.showDenyButton ||
     innerParams.showCancelButton ||
@@ -44,10 +51,13 @@ const isAnyButtonShown = (innerParams) => {
 
 let ignoreOutsideClick = false
 
+/**
+ * @param {DomCache} domCache
+ */
 const handleModalMousedown = (domCache) => {
   domCache.popup.onmousedown = () => {
     domCache.container.onmouseup = function (e) {
-      domCache.container.onmouseup = undefined
+      domCache.container.onmouseup = () => {}
       // We only check if the mouseup target is the container because usually it doesn't
       // have any other direct children aside of the popup
       if (e.target === domCache.container) {
@@ -57,21 +67,32 @@ const handleModalMousedown = (domCache) => {
   }
 }
 
+/**
+ * @param {DomCache} domCache
+ */
 const handleContainerMousedown = (domCache) => {
-  domCache.container.onmousedown = () => {
+  domCache.container.onmousedown = (e) => {
+    // prevent the modal text from being selected on double click on the container (allowOutsideClick: false)
+    if (e.target === domCache.container) {
+      e.preventDefault()
+    }
     domCache.popup.onmouseup = function (e) {
-      domCache.popup.onmouseup = undefined
+      domCache.popup.onmouseup = () => {}
       // We also need to check if the mouseup target is a child of the popup
-      if (e.target === domCache.popup || domCache.popup.contains(e.target)) {
+      if (e.target === domCache.popup || (e.target instanceof HTMLElement && domCache.popup.contains(e.target))) {
         ignoreOutsideClick = true
       }
     }
   }
 }
 
-const handleModalClick = (instance, domCache, dismissWith) => {
+/**
+ * @param {SweetAlertOptions} innerParams
+ * @param {DomCache} domCache
+ * @param {Function} dismissWith
+ */
+const handleModalClick = (innerParams, domCache, dismissWith) => {
   domCache.container.onclick = (e) => {
-    const innerParams = privateProps.innerParams.get(instance)
     if (ignoreOutsideClick) {
       ignoreOutsideClick = false
       return

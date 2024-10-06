@@ -1,3 +1,4 @@
+import globalState from '../../../globalState.js'
 import { getPopup } from '../getters.js'
 import { renderActions } from './renderActions.js'
 import { renderCloseButton } from './renderCloseButton.js'
@@ -11,7 +12,7 @@ import { renderProgressSteps } from './renderProgressSteps.js'
 import { renderTitle } from './renderTitle.js'
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {SweetAlertOptions} params
  */
 export const render = (instance, params) => {
@@ -28,7 +29,9 @@ export const render = (instance, params) => {
   renderActions(instance, params)
   renderFooter(instance, params)
 
-  if (typeof params.didRender === 'function') {
-    params.didRender(getPopup())
+  const popup = getPopup()
+  if (typeof params.didRender === 'function' && popup) {
+    params.didRender(popup)
   }
+  globalState.eventEmitter.emit('didRender', popup)
 }

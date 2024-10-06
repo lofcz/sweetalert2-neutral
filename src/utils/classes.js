@@ -1,18 +1,16 @@
 export const swalPrefix = 'swal2-'
 
 /**
- * @param {string[]} items
- * @returns {object}
+ * @typedef {Record<SwalClass, string>} SwalClasses
  */
-export const prefix = (items) => {
-  const result = {}
-  for (const i in items) {
-    result[items[i]] = swalPrefix + items[i]
-  }
-  return result
-}
 
-export const swalClasses = prefix([
+/**
+ * @typedef {'success' | 'warning' | 'info' | 'question' | 'error'} SwalIcon
+ * @typedef {Record<SwalIcon, string>} SwalIcons
+ */
+
+/** @type {SwalClass[]} */
+const classNames = [
   'container',
   'shown',
   'height-auto',
@@ -82,6 +80,17 @@ export const swalClasses = prefix([
   'icon-info',
   'icon-question',
   'icon-error',
-])
+]
 
-export const iconTypes = prefix(['success', 'warning', 'info', 'question', 'error'])
+export const swalClasses = classNames.reduce((acc, className) => {
+  acc[className] = swalPrefix + className
+  return acc
+}, /** @type {SwalClasses} */ ({}))
+
+/** @type {SwalIcon[]} */
+const icons = ['success', 'warning', 'info', 'question', 'error']
+
+export const iconTypes = icons.reduce((acc, icon) => {
+  acc[icon] = swalPrefix + icon
+  return acc
+}, /** @type {SwalIcons} */ ({}))

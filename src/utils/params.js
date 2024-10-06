@@ -11,6 +11,7 @@ export const defaultParams = {
   iconHtml: undefined,
   template: undefined,
   toast: false,
+  animation: true,
   showClass: {
     popup: 'swal2-show',
     backdrop: 'swal2-backdrop-show',
@@ -71,6 +72,7 @@ export const defaultParams = {
   inputLabel: '',
   inputValue: '',
   inputOptions: {},
+  inputAutoFocus: true,
   inputAutoTrim: true,
   inputAttributes: {},
   inputValidator: undefined,
@@ -136,7 +138,10 @@ export const updatableParams = [
   'willClose',
 ]
 
-export const deprecatedParams = {}
+/** @type {Record<string, string | undefined>} */
+export const deprecatedParams = {
+  allowEnterKey: undefined,
+}
 
 const toastIncompatibleParams = [
   'allowOutsideClick',
@@ -202,8 +207,9 @@ const checkIfToastParamIsValid = (param) => {
  * @param {string} param
  */
 const checkIfParamIsDeprecated = (param) => {
-  if (isDeprecatedParameter(param)) {
-    warnAboutDeprecation(param, isDeprecatedParameter(param))
+  const isDeprecated = isDeprecatedParameter(param)
+  if (isDeprecated) {
+    warnAboutDeprecation(param, isDeprecated)
   }
 }
 

@@ -1,22 +1,6 @@
 export const consolePrefix = 'SweetAlert2:'
 
 /**
- * Filter the unique values into a new array
- *
- * @param {Array} arr
- * @returns {Array}
- */
-export const uniqueArray = (arr) => {
-  const result = []
-  for (let i = 0; i < arr.length; i++) {
-    if (result.indexOf(arr[i]) === -1) {
-      result.push(arr[i])
-    }
-  }
-  return result
-}
-
-/**
  * Capitalize the first letter of a string
  *
  * @param {string} str
@@ -27,7 +11,7 @@ export const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.
 /**
  * Standardize console warnings
  *
- * @param {string | Array} message
+ * @param {string | string[]} message
  */
 export const warn = (message) => {
   console.warn(`${consolePrefix} ${typeof message === 'object' ? message.join(' ') : message}`)
@@ -45,7 +29,7 @@ export const error = (message) => {
 /**
  * Private global state for `warnOnce`
  *
- * @type {Array}
+ * @type {string[]}
  * @private
  */
 const previousWarnOnceMessages = []
@@ -66,11 +50,13 @@ export const warnOnce = (message) => {
  * Show a one-time console warning about deprecated params/methods
  *
  * @param {string} deprecatedParam
- * @param {string} useInstead
+ * @param {string?} useInstead
  */
-export const warnAboutDeprecation = (deprecatedParam, useInstead) => {
+export const warnAboutDeprecation = (deprecatedParam, useInstead = null) => {
   warnOnce(
-    `"${deprecatedParam}" is deprecated and will be removed in the next major release. Please use "${useInstead}" instead.`
+    `"${deprecatedParam}" is deprecated and will be removed in the next major release.${
+      useInstead ? ` Use "${useInstead}" instead.` : ''
+    }`
   )
 }
 
@@ -91,7 +77,7 @@ export const hasToPromiseFn = (arg) => arg && typeof arg.toPromise === 'function
 
 /**
  * @param {any} arg
- * @returns {Promise}
+ * @returns {Promise<any>}
  */
 export const asPromise = (arg) => (hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg))
 

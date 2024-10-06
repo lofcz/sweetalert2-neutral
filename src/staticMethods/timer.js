@@ -53,12 +53,12 @@ export const toggleTimer = () => {
  * Increase timer. Returns number of milliseconds of an updated timer.
  * If `timer` parameter isn't set, returns undefined.
  *
- * @param {number} n
+ * @param {number} ms
  * @returns {number | undefined}
  */
-export const increaseTimer = (n) => {
+export const increaseTimer = (ms) => {
   if (globalState.timeout) {
-    const remaining = globalState.timeout.increase(n)
+    const remaining = globalState.timeout.increase(ms)
     animateTimerProgressBar(remaining, true)
     return remaining
   }
@@ -72,5 +72,5 @@ export const increaseTimer = (n) => {
  * @returns {boolean}
  */
 export const isTimerRunning = () => {
-  return globalState.timeout && globalState.timeout.isRunning()
+  return !!(globalState.timeout && globalState.timeout.isRunning())
 }

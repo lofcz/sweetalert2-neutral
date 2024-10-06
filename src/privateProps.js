@@ -9,8 +9,6 @@
  */
 
 export default {
-  awaitingPromise: new WeakMap(),
-  promise: new WeakMap(),
   innerParams: new WeakMap(),
   domCache: new WeakMap(),
 }

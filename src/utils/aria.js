@@ -6,14 +6,15 @@ import { getContainer } from './dom/getters.js'
 // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
 export const setAriaHidden = () => {
+  const container = getContainer()
   const bodyChildren = Array.from(document.body.children)
   bodyChildren.forEach((el) => {
-    if (el === getContainer() || el.contains(getContainer())) {
+    if (el.contains(container)) {
       return
     }
 
     if (el.hasAttribute('aria-hidden')) {
-      el.setAttribute('data-previous-aria-hidden', el.getAttribute('aria-hidden'))
+      el.setAttribute('data-previous-aria-hidden', el.getAttribute('aria-hidden') || '')
     }
     el.setAttribute('aria-hidden', 'true')
   })
@@ -23,7 +24,7 @@ export const unsetAriaHidden = () => {
   const bodyChildren = Array.from(document.body.children)
   bodyChildren.forEach((el) => {
     if (el.hasAttribute('data-previous-aria-hidden')) {
-      el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden'))
+      el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden') || '')
       el.removeAttribute('data-previous-aria-hidden')
     } else {
       el.removeAttribute('aria-hidden')

@@ -4,12 +4,15 @@ import * as dom from '../../dom/index.js'
 import { error } from '../../utils.js'
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {SweetAlertOptions} params
  */
 export const renderIcon = (instance, params) => {
   const innerParams = privateProps.innerParams.get(instance)
   const icon = dom.getIcon()
+  if (!icon) {
+    return
+  }
 
   // if the given icon already rendered, apply the styling without re-rendering the icon
   if (innerParams && params.icon === innerParams.icon) {
@@ -39,7 +42,7 @@ export const renderIcon = (instance, params) => {
   applyStyles(icon, params)
 
   // Animate icon
-  dom.addClass(icon, params.showClass.icon)
+  dom.addClass(icon, params.showClass && params.showClass.icon)
 }
 
 /**
@@ -47,12 +50,12 @@ export const renderIcon = (instance, params) => {
  * @param {SweetAlertOptions} params
  */
 const applyStyles = (icon, params) => {
-  for (const iconType in iconTypes) {
+  for (const [iconType, iconClassName] of Object.entries(iconTypes)) {
     if (params.icon !== iconType) {
-      dom.removeClass(icon, iconTypes[iconType])
+      dom.removeClass(icon, iconClassName)
     }
   }
-  dom.addClass(icon, iconTypes[params.icon])
+  dom.addClass(icon, params.icon && iconTypes[params.icon])
 
   // Icon color
   setColor(icon, params)
@@ -67,6 +70,9 @@ const applyStyles = (icon, params) => {
 // Adjust success icon background color to match the popup background color
 const adjustSuccessIconBackgroundColor = () => {
   const popup = dom.getPopup()
+  if (!popup) {
+    return
+  }
   const popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color')
   /** @type {NodeListOf<HTMLElement>} */
   const successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix')
@@ -94,8 +100,11 @@ const errorIconHtml = `
  * @param {SweetAlertOptions} params
  */
 const setContent = (icon, params) => {
+  if (!params.icon && !params.iconHtml) {
+    return
+  }
   let oldContent = icon.innerHTML
-  let newContent
+  let newContent = ''
   if (params.iconHtml) {
     newContent = iconContent(params.iconHtml)
   } else if (params.icon === 'success') {
@@ -103,7 +112,7 @@ const setContent = (icon, params) => {
     oldContent = oldContent.replace(/ style=".*?"/g, '') // undo adjustSuccessIconBackgroundColor()
   } else if (params.icon === 'error') {
     newContent = errorIconHtml
-  } else {
+  } else if (params.icon) {
     const defaultIconHtml = {
       question: '?',
       warning: '!',
@@ -133,9 +142,9 @@ const setColor = (icon, params) => {
     '.swal2-x-mark-line-left',
     '.swal2-x-mark-line-right',
   ]) {
-    dom.setStyle(icon, sel, 'backgroundColor', params.iconColor)
+    dom.setStyle(icon, sel, 'background-color', params.iconColor)
   }
-  dom.setStyle(icon, '.swal2-success-ring', 'borderColor', params.iconColor)
+  dom.setStyle(icon, '.swal2-success-ring', 'border-color', params.iconColor)
 }
 
 /**

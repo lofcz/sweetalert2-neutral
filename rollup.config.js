@@ -22,19 +22,32 @@ const output = {
   banner,
   footer,
 }
+const outputEsm = {
+  format: 'es',
+  file: 'dist/sweetalert2.esm.js',
+  banner,
+}
 
 export default {
   plugins: [
     babel({
       babelHelpers: 'bundled',
+      presets: [['@babel/preset-env', { include: ['transform-optional-chaining', 'transform-class-properties'] }]],
+      targets: 'defaults',
     }),
   ],
   input: 'src/sweetalert2.js',
   output: [
     output,
+    outputEsm,
     {
       ...output,
       file: 'dist/sweetalert2.min.js',
+      plugins: [terser()],
+    },
+    {
+      ...outputEsm,
+      file: 'dist/sweetalert2.esm.min.js',
       plugins: [terser()],
     },
   ],

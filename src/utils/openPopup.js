@@ -3,7 +3,7 @@ import { setAriaHidden } from './aria.js'
 import { swalClasses } from './classes.js'
 import * as dom from './dom/index.js'
 import { iOSfix } from './iosFix.js'
-import { fixScrollbar } from './scrollbarFix.js'
+import { replaceScrollbarWithPadding } from './scrollbar.js'
 
 export const SHOW_CLASS_TIMEOUT = 10
 
@@ -19,6 +19,7 @@ export const openPopup = (params) => {
   if (typeof params.willOpen === 'function') {
     params.willOpen(popup)
   }
+  globalState.eventEmitter.emit('willOpen', popup)
 
   const bodyStyles = window.getComputedStyle(document.body)
   const initialBodyOverflow = bodyStyles.overflowY
@@ -41,6 +42,7 @@ export const openPopup = (params) => {
   if (typeof params.didOpen === 'function') {
     setTimeout(() => params.didOpen(popup))
   }
+  globalState.eventEmitter.emit('didOpen', popup)
 
   dom.removeClass(container, swalClasses['no-transition'])
 }
@@ -50,7 +52,7 @@ export const openPopup = (params) => {
  */
 const swalOpenAnimationFinished = (event) => {
   const popup = dom.getPopup()
-  if (event.target !== popup) {
+  if (event.target !== popup || !dom.animationEndEvent) {
     return
   }
   const container = dom.getContainer()
@@ -80,7 +82,7 @@ const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) =>
   iOSfix()
 
   if (scrollbarPadding && initialBodyOverflow !== 'hidden') {
-    fixScrollbar()
+    replaceScrollbarWithPadding(initialBodyOverflow)
   }
 
   // sweetalert2/issues/1247
@@ -96,15 +98,19 @@ const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) =>
  */
 const addClasses = (container, popup, params) => {
   dom.addClass(container, params.showClass.backdrop)
-  // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059
-  popup.style.setProperty('opacity', '0', 'important')
-  dom.show(popup, 'grid')
-  setTimeout(() => {
-    // Animate popup right after showing it
-    dom.addClass(popup, params.showClass.popup)
-    // and remove the opacity workaround
-    popup.style.removeProperty('opacity')
-  }, SHOW_CLASS_TIMEOUT) // 10ms in order to fix #2062
+  if (params.animation) {
+    // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059
+    popup.style.setProperty('opacity', '0', 'important')
+    dom.show(popup, 'grid')
+    setTimeout(() => {
+      // Animate popup right after showing it
+      dom.addClass(popup, params.showClass.popup)
+      // and remove the opacity workaround
+      popup.style.removeProperty('opacity')
+    }, SHOW_CLASS_TIMEOUT) // 10ms in order to fix #2062
+  } else {
+    dom.show(popup, 'grid')
+  }
 
   dom.addClass([document.documentElement, document.body], swalClasses.shown)
   if (params.heightAuto && params.backdrop && !params.toast) {

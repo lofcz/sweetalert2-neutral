@@ -2,7 +2,6 @@
 name: Question
 about: Ask a question
 labels:
-
 ---
 
 Please post your question to StackOverflow: https://stackoverflow.com/questions/ask

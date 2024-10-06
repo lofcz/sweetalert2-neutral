@@ -2,11 +2,6 @@ import { iconTypes, swalClasses } from '../classes.js'
 import { warn } from '../utils.js'
 import { getCancelButton, getConfirmButton, getDenyButton, getTimerProgressBar } from './getters.js'
 
-// Remember state in cases where opening and handling a modal will fiddle with it.
-export const states = {
-  previousBodyPadding: null,
-}
-
 /**
  * Securely set innerHTML of an element
  * https://github.com/sweetalert2/sweetalert2/issues/1926
@@ -19,16 +14,22 @@ export const setInnerHtml = (elem, html) => {
   if (html) {
     const parser = new DOMParser()
     const parsed = parser.parseFromString(html, `text/html`)
-    Array.from(parsed.querySelector('head').childNodes).forEach((child) => {
-      elem.appendChild(child)
-    })
-    Array.from(parsed.querySelector('body').childNodes).forEach((child) => {
-      if (child instanceof HTMLVideoElement || child instanceof HTMLAudioElement) {
-        elem.appendChild(child.cloneNode(true)) // https://github.com/sweetalert2/sweetalert2/issues/2507
-      } else {
+    const head = parsed.querySelector('head')
+    if (head) {
+      Array.from(head.childNodes).forEach((child) => {
         elem.appendChild(child)
-      }
-    })
+      })
+    }
+    const body = parsed.querySelector('body')
+    if (body) {
+      Array.from(body.childNodes).forEach((child) => {
+        if (child instanceof HTMLVideoElement || child instanceof HTMLAudioElement) {
+          elem.appendChild(child.cloneNode(true)) // https://github.com/sweetalert2/sweetalert2/issues/2507
+        } else {
+          elem.appendChild(child)
+        }
+      })
+    }
   }
 }
 
@@ -59,7 +60,7 @@ const removeCustomClasses = (elem, params) => {
     if (
       !Object.values(swalClasses).includes(className) &&
       !Object.values(iconTypes).includes(className) &&
-      !Object.values(params.showClass).includes(className)
+      !Object.values(params.showClass || {}).includes(className)
     ) {
       elem.classList.remove(className)
     }
@@ -74,23 +75,27 @@ const removeCustomClasses = (elem, params) => {
 export const applyCustomClass = (elem, params, className) => {
   removeCustomClasses(elem, params)
 
-  if (params.customClass && params.customClass[className]) {
-    if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
-      warn(
-        `Invalid type of customClass.${className}! Expected string or iterable object, got "${typeof params.customClass[
-          className
-        ]}"`
-      )
-      return
-    }
-
-    addClass(elem, params.customClass[className])
+  if (!params.customClass) {
+    return
   }
+
+  const customClass = params.customClass[/** @type {keyof SweetAlertCustomClass} */ (className)]
+
+  if (!customClass) {
+    return
+  }
+
+  if (typeof customClass !== 'string' && !customClass.forEach) {
+    warn(`Invalid type of customClass.${className}! Expected string or iterable object, got "${typeof customClass}"`)
+    return
+  }
+
+  addClass(elem, customClass)
 }
 
 /**
  * @param {HTMLElement} popup
- * @param {import('./renderers/renderInput').InputClass} inputClass
+ * @param {import('./renderers/renderInput').InputClass | SweetAlertInput} inputClass
  * @returns {HTMLInputElement | null}
  */
 export const getInput = (popup, inputClass) => {
@@ -133,7 +138,7 @@ export const focusInput = (input) => {
 
 /**
  * @param {HTMLElement | HTMLElement[] | null} target
- * @param {string | string[] | readonly string[]} classList
+ * @param {string | string[] | readonly string[] | undefined} classList
  * @param {boolean} condition
  */
 export const toggleClass = (target, classList, condition) => {
@@ -146,17 +151,25 @@ export const toggleClass = (target, classList, condition) => {
   classList.forEach((className) => {
     if (Array.isArray(target)) {
       target.forEach((elem) => {
-        condition ? elem.classList.add(className) : elem.classList.remove(className)
+        if (condition) {
+          elem.classList.add(className)
+        } else {
+          elem.classList.remove(className)
+        }
       })
     } else {
-      condition ? target.classList.add(className) : target.classList.remove(className)
+      if (condition) {
+        target.classList.add(className)
+      } else {
+        target.classList.remove(className)
+      }
     }
   })
 }
 
 /**
  * @param {HTMLElement | HTMLElement[] | null} target
- * @param {string | string[] | readonly string[]} classList
+ * @param {string | string[] | readonly string[] | undefined} classList
  */
 export const addClass = (target, classList) => {
   toggleClass(target, classList, true)
@@ -164,7 +177,7 @@ export const addClass = (target, classList) => {
 
 /**
  * @param {HTMLElement | HTMLElement[] | null} target
- * @param {string | string[] | readonly string[]} classList
+ * @param {string | string[] | readonly string[] | undefined} classList
  */
 export const removeClass = (target, classList) => {
   toggleClass(target, classList, false)
@@ -197,25 +210,46 @@ export const applyNumericalStyle = (elem, property, value) => {
     value = parseInt(value)
   }
   if (value || parseInt(value) === 0) {
-    elem.style[property] = typeof value === 'number' ? `${value}px` : value
+    elem.style.setProperty(property, typeof value === 'number' ? `${value}px` : value)
   } else {
     elem.style.removeProperty(property)
   }
 }
 
 /**
- * @param {HTMLElement} elem
+ * @param {HTMLElement | null} elem
  * @param {string} display
  */
 export const show = (elem, display = 'flex') => {
+  if (!elem) {
+    return
+  }
+
   elem.style.display = display
 }
 
 /**
- * @param {HTMLElement} elem
+ * @param {HTMLElement | null} elem
  */
 export const hide = (elem) => {
+  if (!elem) {
+    return
+  }
+
   elem.style.display = 'none'
+}
+
+/**
+ * @param {HTMLElement | null} elem
+ * @param {string} display
+ */
+export const showWhenInnerHtmlPresent = (elem, display = 'block') => {
+  if (!elem) {
+    return
+  }
+  new MutationObserver(() => {
+    toggle(elem, elem.innerHTML, display)
+  }).observe(elem, { childList: true, subtree: true })
 }
 
 /**
@@ -225,10 +259,10 @@ export const hide = (elem) => {
  * @param {string} value
  */
 export const setStyle = (parent, selector, property, value) => {
-  /** @type {HTMLElement} */
+  /** @type {HTMLElement | null} */
   const el = parent.querySelector(selector)
   if (el) {
-    el.style[property] = value
+    el.style.setProperty(property, value)
   }
 }
 
@@ -238,13 +272,17 @@ export const setStyle = (parent, selector, property, value) => {
  * @param {string} display
  */
 export const toggle = (elem, condition, display = 'flex') => {
-  condition ? show(elem, display) : hide(elem)
+  if (condition) {
+    show(elem, display)
+  } else {
+    hide(elem)
+  }
 }
 
 /**
  * borrowed from jquery $(elem).is(':visible') implementation
  *
- * @param {HTMLElement} elem
+ * @param {HTMLElement | null} elem
  * @returns {boolean}
  */
 export const isVisible = (elem) => !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length))
@@ -282,6 +320,9 @@ export const hasCssAnimation = (elem) => {
  */
 export const animateTimerProgressBar = (timer, reset = false) => {
   const timerProgressBar = getTimerProgressBar()
+  if (!timerProgressBar) {
+    return
+  }
   if (isVisible(timerProgressBar)) {
     if (reset) {
       timerProgressBar.style.transition = 'none'
@@ -296,11 +337,13 @@ export const animateTimerProgressBar = (timer, reset = false) => {
 
 export const stopTimerProgressBar = () => {
   const timerProgressBar = getTimerProgressBar()
+  if (!timerProgressBar) {
+    return
+  }
   const timerProgressBarWidth = parseInt(window.getComputedStyle(timerProgressBar).width)
   timerProgressBar.style.removeProperty('transition')
   timerProgressBar.style.width = '100%'
   const timerProgressBarFullWidth = parseInt(window.getComputedStyle(timerProgressBar).width)
   const timerProgressBarPercent = (timerProgressBarWidth / timerProgressBarFullWidth) * 100
-  timerProgressBar.style.removeProperty('transition')
   timerProgressBar.style.width = `${timerProgressBarPercent}%`
 }

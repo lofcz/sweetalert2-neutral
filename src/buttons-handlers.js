@@ -1,4 +1,4 @@
-import { handleAwaitingPromise } from './instanceMethods.js'
+import { handleAwaitingPromise } from './instanceMethods/close.js'
 import privateProps from './privateProps.js'
 import { showLoading } from './staticMethods/showLoading.js'
 import { DismissReason } from './utils/DismissReason.js'
@@ -8,7 +8,7 @@ import { getInputValue } from './utils/dom/inputUtils.js'
 import { asPromise, capitalizeFirstLetter, error } from './utils/utils.js'
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  */
 export const handleConfirmButtonClick = (instance) => {
   const innerParams = privateProps.innerParams.get(instance)
@@ -21,7 +21,7 @@ export const handleConfirmButtonClick = (instance) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  */
 export const handleDenyButtonClick = (instance) => {
   const innerParams = privateProps.innerParams.get(instance)
@@ -34,7 +34,7 @@ export const handleDenyButtonClick = (instance) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {Function} dismissWith
  */
 export const handleCancelButtonClick = (instance, dismissWith) => {
@@ -43,7 +43,7 @@ export const handleCancelButtonClick = (instance, dismissWith) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {'confirm' | 'deny'} type
  */
 const handleConfirmOrDenyWithInput = (instance, type) => {
@@ -52,12 +52,13 @@ const handleConfirmOrDenyWithInput = (instance, type) => {
     error(`The "input" parameter is needed to be set when using returnInputValueOn${capitalizeFirstLetter(type)}`)
     return
   }
+  const input = instance.getInput()
   const inputValue = getInputValue(instance, innerParams)
   if (innerParams.inputValidator) {
     handleInputValidator(instance, inputValue, type)
-  } else if (!instance.getInput().checkValidity()) {
+  } else if (input && !input.checkValidity()) {
     instance.enableButtons()
-    instance.showValidationMessage(innerParams.validationMessage)
+    instance.showValidationMessage(innerParams.validationMessage || input.validationMessage)
   } else if (type === 'deny') {
     deny(instance, inputValue)
   } else {
@@ -66,8 +67,8 @@ const handleConfirmOrDenyWithInput = (instance, type) => {
 }
 
 /**
- * @param {SweetAlert2} instance
- * @param {string | number | File | FileList | null} inputValue
+ * @param {SweetAlert} instance
+ * @param {SweetAlertInputValue} inputValue
  * @param {'confirm' | 'deny'} type
  */
 const handleInputValidator = (instance, inputValue, type) => {
@@ -90,7 +91,7 @@ const handleInputValidator = (instance, inputValue, type) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {any} value
  */
 const deny = (instance, value) => {
@@ -101,7 +102,7 @@ const deny = (instance, value) => {
   }
 
   if (innerParams.preDeny) {
-    privateProps.awaitingPromise.set(instance || this, true) // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preDeny's promise is received
+    instance.isAwaitingPromise = true // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preDeny's promise is received
     const preDenyPromise = Promise.resolve().then(() =>
       asPromise(innerParams.preDeny(value, innerParams.validationMessage))
     )
@@ -121,7 +122,7 @@ const deny = (instance, value) => {
 }
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {any} value
  */
 const succeedWith = (instance, value) => {
@@ -130,17 +131,16 @@ const succeedWith = (instance, value) => {
 
 /**
  *
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {string} error
  */
 const rejectWith = (instance, error) => {
-  // @ts-ignore
   instance.rejectPromise(error)
 }
 
 /**
  *
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {any} value
  */
 const confirm = (instance, value) => {
@@ -152,7 +152,7 @@ const confirm = (instance, value) => {
 
   if (innerParams.preConfirm) {
     instance.resetValidationMessage()
-    privateProps.awaitingPromise.set(instance || this, true) // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preConfirm's promise is received
+    instance.isAwaitingPromise = true // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preConfirm's promise is received
     const preConfirmPromise = Promise.resolve().then(() =>
       asPromise(innerParams.preConfirm(value, innerParams.validationMessage))
     )
