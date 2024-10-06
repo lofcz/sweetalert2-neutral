@@ -1,9 +1,9 @@
 {
-  "name": "sweetalert2",
-  "version": "11.14.1",
-  "repository": "sweetalert2/sweetalert2",
-  "homepage": "https://sweetalert2.github.io/",
-  "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert",
+  "name": "sweetalert2-neutral",
+  "version": "11.14.1-neutral",
+  "repository": "lofcz/sweetalert2-neutral",
+  "homepage": "https://github.com/lofcz/sweetalert2-neutral",
+  "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
   "main": "dist/sweetalert2.all.js",
   "browser": "dist/sweetalert2.all.js",
   "module": "dist/sweetalert2.esm.all.js",
@@ -45,7 +45,8 @@
     "Giuseppe Verni (https://github.com/gverni)",
     "Sam Turrell <sam@samturrell.co.uk> (https://github.com/samturrell)",
     "Joseph Schultz (https://github.com/acupofjose)",
-    "Johan Fagerberg (https://github.com/birjolaxew)"
+    "Johan Fagerberg (https://github.com/birjolaxew)",
+    "Matěj Štágll (https://github.com/lofcz)"
   ],
   "keywords": [
     "sweetalert",
@@ -56,7 +57,9 @@
     "prompt",
     "confirm",
     "toast",
-    "accessible"
+    "accessible",
+    "neutral",
+    "sweetalert2-neutral"
   ],
   "scripts": {
     "dev": "vite sandbox --open",
@@ -67,10 +70,6 @@
     "cypress:open": "cypress open",
     "webpack-build": "webpack --config=test/webpack/webpack.config.js"
   },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/limonte"
-  },
   "prettier": {
     "printWidth": 120,
     "semi": false,
@@ -78,6 +77,6 @@
     "quoteProps": "consistent",
     "trailingComma": "es5"
   },
-  "bugs": "https://github.com/sweetalert2/sweetalert2/issues",
+  "bugs": "https://github.com/lofcz/sweetalert2-neutral/issues",
   "license": "MIT"
 }
