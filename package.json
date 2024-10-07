@@ -1,6 +1,6 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.14.1-neutral",
+  "version": "11.14.1-neutral-fix2",
   "repository": "lofcz/sweetalert2-neutral",
   "homepage": "https://github.com/lofcz/sweetalert2-neutral",
   "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
@@ -8,6 +8,13 @@
   "browser": "dist/sweetalert2.all.js",
   "module": "dist/sweetalert2.esm.all.js",
   "types": "sweetalert2.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/sweetalert2.esm.all.js",
+      "require": "./dist/sweetalert2.all.js"
+    },
+    "./package.json": "./package.json"
+  },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
@@ -23,12 +30,13 @@
     "jquery": "^3.6.1",
     "playwright-webkit": "^1.37.1",
     "prettier": "^3.0.0",
-    "rollup": "^4.0.0",
+    "rollup": "^2.79.1",
     "sass": "^1.55.0",
     "stylelint": "^16.0.0",
     "typescript": "4.7.4",
     "vite": "^5.0.0",
-    "zx": "^8.0.0"
+    "webpack-cli": "^5.1.4",
+    "zx": "^8.1.8"
   },
   "devDependenciesComments": {
     "typescript": "Do not upgrade TS, tests will verify that types work with the very first version of TS >= 4.7.4"
@@ -64,7 +72,7 @@
   "scripts": {
     "dev": "vite sandbox --open",
     "lint": "stylelint src/**/*.scss && eslint src cypress *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
-    "build": "zx tools/build.mjs",
+    "build": "node tools/build.mjs",
     "test": "cypress run --headless",
     "check-types": "npx -p typescript@latest tsc --noEmit -p jsconfig.json",
     "cypress:open": "cypress open",
@@ -78,5 +86,8 @@
     "trailingComma": "es5"
   },
   "bugs": "https://github.com/lofcz/sweetalert2-neutral/issues",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.95.0"
+  }
 }
