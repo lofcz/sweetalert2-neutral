@@ -1,6 +1,6 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.14.1-neutral-fix2",
+  "version": "11.14.1-neutral-fix5",
   "repository": "lofcz/sweetalert2-neutral",
   "homepage": "https://github.com/lofcz/sweetalert2-neutral",
   "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
@@ -11,9 +11,16 @@
   "exports": {
     ".": {
       "import": "./dist/sweetalert2.esm.all.js",
-      "require": "./dist/sweetalert2.all.js"
+      "require": "./dist/sweetalert2.all.js",
+      "types": "./sweetalert2.d.ts"
     },
-    "./package.json": "./package.json"
+    "./dist/sweetalert2": "./dist/sweetalert2.js",
+    "./dist/sweetalert2.all": "./dist/sweetalert2.all.js",
+    "./dist/sweetalert2.esm": "./dist/sweetalert2.esm.js",
+    "./dist/sweetalert2.min": "./dist/sweetalert2.min.js",
+    "./package.json": "./package.json",
+    "./compat": "./sweetalert2-compat.js",
+    "./sweetalert2.d.ts": "./sweetalert2.d.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

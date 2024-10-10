@@ -1,4 +1,4 @@
-declare module 'sweetalert2' {
+declare module 'sweetalert2-neutral' {
   /**
    * A namespace inside the default function, containing utility function for controlling the currently-displayed popup.
    *
@@ -1245,16 +1245,16 @@ declare module 'sweetalert2' {
   export default Swal
 }
 
-declare module 'sweetalert2/*/sweetalert2.js' {
-  export * from 'sweetalert2'
+declare module 'sweetalert2-neutral/*/sweetalert2.js' {
+  export * from 'sweetalert2-neutral'
   // "export *" does not matches the default export, so do it explicitly.
-  export { default } from 'sweetalert2'
+  export { default } from 'sweetalert2-neutral'
 }
 
-declare module 'sweetalert2/*/sweetalert2.all.js' {
-  export * from 'sweetalert2'
+declare module 'sweetalert2-neutral/*/sweetalert2.all.js' {
+  export * from 'sweetalert2-neutral'
   // "export *" does not matches the default export, so do it explicitly.
-  export { default } from 'sweetalert2'
+  export { default } from 'sweetalert2-neutral'
 }
 
 /**
