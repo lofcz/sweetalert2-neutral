@@ -16,6 +16,13 @@ Install:
 ```
 npm i sweetalert2-neutral
 ```
+
+If using imports, replace:
+```diff
+- import Swal from 'sweetalert2';
++ import Swal from 'sweetalert2-neutral';
+```
+
 or use [pre-built binaries](https://github.com/lofcz/sweetalert2-neutral/releases).
 
 ### FAQ
