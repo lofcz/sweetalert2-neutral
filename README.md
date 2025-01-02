@@ -42,7 +42,7 @@ Most certainly. By merging you can decide which anti-war messages you want to di
 
 > Are there any other changes apart from removing "anti-war" messages?
 
-No.
+Build scripts were changed to simplify the build cross-platform, run `npm run build` to build `dist` files. 
 
 > Are there any other benefits apart from unwanted banners not showing up on my site?
 
