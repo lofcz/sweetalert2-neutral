@@ -1,13 +1,17 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.15.5-neutral",
-  "repository": "lofcz/sweetalert2-neutral",
+  "version": "11.15.5-neutral-fix1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lofcz/sweetalert2-neutral.git"
+  },
   "homepage": "https://github.com/lofcz/sweetalert2-neutral",
   "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
   "main": "dist/sweetalert2.all.js",
   "browser": "dist/sweetalert2.all.js",
   "module": "dist/sweetalert2.esm.all.js",
   "types": "sweetalert2.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/sweetalert2.esm.all.js",
@@ -62,7 +66,7 @@
     "Sam Turrell <sam@samturrell.co.uk> (https://github.com/samturrell)",
     "Joseph Schultz (https://github.com/acupofjose)",
     "Johan Fagerberg (https://github.com/birjolaxew)",
-    "Matěj Štágll (https://github.com/lofcz)"
+    "Matěj Štágl (https://github.com/lofcz)"
   ],
   "keywords": [
     "sweetalert",
@@ -84,7 +88,8 @@
     "test": "cypress run --headless",
     "check-types": "npx -p typescript@latest tsc --noEmit --lib dom,es2018 -p jsconfig.json",
     "cypress:open": "cypress open",
-    "webpack-build": "webpack --config=test/webpack/webpack.config.js"
+    "webpack-build": "webpack --config=test/webpack/webpack.config.js",
+    "release-npm-version": "npm publish --tag latest"
   },
   "prettier": {
     "printWidth": 120,
