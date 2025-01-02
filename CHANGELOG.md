@@ -1,3 +1,24 @@
+## [11.14.4](https://github.com/sweetalert2/sweetalert2/compare/v11.14.3...v11.14.4) (2024-10-20)
+
+
+### Bug Fixes
+
+* get rid of sass/mixins ([#2774](https://github.com/sweetalert2/sweetalert2/issues/2774)) ([e79ddb0](https://github.com/sweetalert2/sweetalert2/commit/e79ddb091170498f19a408c97136d3d994ee08e3))
+
+## [11.14.3](https://github.com/sweetalert2/sweetalert2/compare/v11.14.2...v11.14.3) (2024-10-12)
+
+
+### Bug Fixes
+
+* handle `transitionend` together with `animationend` ([#2773](https://github.com/sweetalert2/sweetalert2/issues/2773)) ([3441fc5](https://github.com/sweetalert2/sweetalert2/commit/3441fc5c64f207bcd5afebdd0a266dcc5f009c13))
+
+## [11.14.2](https://github.com/sweetalert2/sweetalert2/compare/v11.14.1...v11.14.2) (2024-10-07)
+
+
+### Bug Fixes
+
+* use animationend event ([#2770](https://github.com/sweetalert2/sweetalert2/issues/2770)) ([c510323](https://github.com/sweetalert2/sweetalert2/commit/c51032360ca9cff448ca7375001f604df1061982))
+
 ## [11.14.1](https://github.com/sweetalert2/sweetalert2/compare/v11.14.0...v11.14.1) (2024-09-21)
 
 

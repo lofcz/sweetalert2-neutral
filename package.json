@@ -1,6 +1,6 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.14.1-neutral-fix6",
+  "version": "11.14.4-neutral-fix6",
   "repository": "lofcz/sweetalert2-neutral",
   "homepage": "https://github.com/lofcz/sweetalert2-neutral",
   "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
@@ -33,7 +33,7 @@
     "@sweetalert2/stylelint-config": "^3.0.0",
     "cypress": "^13.0.0",
     "eslint": "^9.0.0",
-    "eslint-plugin-cypress": "^3.0.0",
+    "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-jsdoc": "^50.0.0",
     "eslint-plugin-no-unsanitized": "^4.0.1",
     "jquery": "^3.6.1",

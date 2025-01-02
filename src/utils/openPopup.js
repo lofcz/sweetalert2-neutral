@@ -52,11 +52,12 @@ export const openPopup = (params) => {
  */
 const swalOpenAnimationFinished = (event) => {
   const popup = dom.getPopup()
-  if (event.target !== popup || !dom.animationEndEvent) {
+  if (event.target !== popup) {
     return
   }
   const container = dom.getContainer()
-  popup.removeEventListener(dom.animationEndEvent, swalOpenAnimationFinished)
+  popup.removeEventListener('animationend', swalOpenAnimationFinished)
+  popup.removeEventListener('transitionend', swalOpenAnimationFinished)
   container.style.overflowY = 'auto'
 }
 
@@ -65,9 +66,10 @@ const swalOpenAnimationFinished = (event) => {
  * @param {HTMLElement} popup
  */
 const setScrollingVisibility = (container, popup) => {
-  if (dom.animationEndEvent && dom.hasCssAnimation(popup)) {
+  if (dom.hasCssAnimation(popup)) {
     container.style.overflowY = 'hidden'
-    popup.addEventListener(dom.animationEndEvent, swalOpenAnimationFinished)
+    popup.addEventListener('animationend', swalOpenAnimationFinished)
+    popup.addEventListener('transitionend', swalOpenAnimationFinished)
   } else {
     container.style.overflowY = 'auto'
   }
