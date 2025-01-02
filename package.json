@@ -1,6 +1,6 @@
 {
   "name": "sweetalert2-neutral",
-  "version": "11.14.4-neutral-fix6",
+  "version": "11.15.5-neutral",
   "repository": "lofcz/sweetalert2-neutral",
   "homepage": "https://github.com/lofcz/sweetalert2-neutral",
   "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert. Neutral version without 'protest-ware' features / spyware.",
@@ -39,13 +39,12 @@
     "jquery": "^3.6.1",
     "playwright-webkit": "^1.37.1",
     "prettier": "^3.0.0",
-    "rollup": "^2.79.1",
-    "sass": "^1.55.0",
+    "rollup": "^4.0.0",
+    "sass": "~1.79.0",
     "stylelint": "^16.0.0",
-    "typescript": "4.7.4",
-    "vite": "^5.0.0",
-    "webpack-cli": "^5.1.4",
-    "zx": "^8.1.8"
+    "typescript": "4.8.4",
+    "vite": "^6.0.0",
+    "zx": "^8.0.0"
   },
   "devDependenciesComments": {
     "typescript": "Do not upgrade TS, tests will verify that types work with the very first version of TS >= 4.7.4"
@@ -83,7 +82,7 @@
     "lint": "stylelint src/**/*.scss && eslint src cypress *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
     "build": "node tools/build.mjs",
     "test": "cypress run --headless",
-    "check-types": "npx -p typescript@latest tsc --noEmit -p jsconfig.json",
+    "check-types": "npx -p typescript@latest tsc --noEmit --lib dom,es2018 -p jsconfig.json",
     "cypress:open": "cypress open",
     "webpack-build": "webpack --config=test/webpack/webpack.config.js"
   },

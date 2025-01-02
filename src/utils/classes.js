@@ -80,6 +80,8 @@ const classNames = [
   'icon-info',
   'icon-question',
   'icon-error',
+  'draggable',
+  'dragging',
 ]
 
 export const swalClasses = classNames.reduce((acc, className) => {

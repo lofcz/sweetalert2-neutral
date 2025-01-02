@@ -112,6 +112,8 @@
  *   | 'icon-info'
  *   | 'icon-question'
  *   | 'icon-error'
+ *   | 'draggable'
+ *   | 'dragging'
  * } SwalClass
  */
 

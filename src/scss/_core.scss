@@ -138,6 +138,22 @@ div:where(.swal2-container) {
     &.swal2-loading {
       overflow-y: hidden;
     }
+
+    &.swal2-draggable {
+      cursor: grab;
+
+      div:where(.swal2-icon) {
+        cursor: grab;
+      }
+    }
+
+    &.swal2-dragging {
+      cursor: grabbing;
+
+      div:where(.swal2-icon) {
+        cursor: grabbing;
+      }
+    }
   }
 
   h2:where(.swal2-title) {
@@ -151,6 +167,7 @@ div:where(.swal2-container) {
     text-align: $swal2-title-text-align;
     text-transform: none;
     word-wrap: break-word;
+    cursor: initial;
   }
 
   div:where(.swal2-actions) {
@@ -270,6 +287,7 @@ div:where(.swal2-container) {
     color: $swal2-footer-color;
     font-size: $swal2-footer-font-size;
     text-align: $swal2-footer-text-align;
+    cursor: initial;
   }
 
   .swal2-timer-progress-bar-container {
@@ -292,6 +310,7 @@ div:where(.swal2-container) {
   img:where(.swal2-image) {
     max-width: 100%;
     margin: $swal2-image-margin;
+    cursor: initial;
   }
 
   button:where(.swal2-close) {
@@ -333,7 +352,7 @@ div:where(.swal2-container) {
     }
   }
 
-  .swal2-html-container {
+  div:where(.swal2-html-container) {
     z-index: 1; // prevent success icon overlapping the content
     justify-content: $swal2-html-container-justify-content;
     margin: $swal2-html-container-margin;
@@ -346,6 +365,7 @@ div:where(.swal2-container) {
     text-align: $swal2-html-container-text-align;
     word-wrap: $swal2-html-container-word-wrap;
     word-break: $swal2-html-container-word-break;
+    cursor: initial;
   }
 
   input:where(.swal2-input),

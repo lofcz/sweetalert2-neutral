@@ -8,6 +8,8 @@ import {
   SwalWithoutAnimation,
   TIMEOUT,
   dispatchCustomEvent,
+  dispatchMouseEvent,
+  dispatchTouchEvent,
   ensureClosed,
   isHidden,
   triggerKeydownEvent,
@@ -461,6 +463,59 @@ describe('customClass', () => {
       spy.calledWith('SweetAlert2: Invalid type of customClass.popup! Expected string or iterable object, got "number"')
     ).to.be.true
   })
+})
+
+describe('draggable', () => {
+  it('should drag popup with mouse evnets', () => {
+    SwalWithoutAnimation.fire({
+      title: 'Drag me!',
+      draggable: true,
+    })
+
+    const popup = Swal.getPopup()
+    const initialRect = popup.getBoundingClientRect()
+    const initialX = initialRect.left
+    const initialY = initialRect.top
+
+    dispatchMouseEvent(popup, 'mousedown', { clientX: initialX, clientY: initialY })
+    dispatchMouseEvent(document.body, 'mousemove', { clientX: initialX + 10, clientY: initialY + 10 })
+    dispatchMouseEvent(popup, 'mouseup')
+    dispatchMouseEvent(document.body, 'mousemove', { clientX: initialX + 20, clientY: initialY + 20 })
+
+    const finalRect = popup.getBoundingClientRect()
+    const finalX = finalRect.left
+    const finalY = finalRect.top
+
+    expect(finalX).to.equal(initialX + 10)
+    expect(finalY).to.equal(initialY + 10)
+  })
+
+  // `Touch` and `TouchEvent` are only available in Chrome
+  if (Cypress.isBrowser('chrome')) {
+    it('should drag popup with touch events', () => {
+      SwalWithoutAnimation.fire({
+        title: 'Drag me!',
+        draggable: true,
+      })
+
+      const popup = Swal.getPopup()
+      const initialRect = popup.getBoundingClientRect()
+      const initialX = initialRect.left
+      const initialY = initialRect.top
+
+      dispatchTouchEvent(popup, 'touchstart', { clientX: initialX, clientY: initialY })
+      dispatchTouchEvent(document.body, 'touchmove', { clientX: initialX + 10, clientY: initialY + 10 })
+      dispatchTouchEvent(popup, 'touchend')
+      dispatchTouchEvent(document.body, 'touchmove', { clientX: initialX + 20, clientY: initialY + 20 })
+
+      const finalRect = popup.getBoundingClientRect()
+      const finalX = finalRect.left
+      const finalY = finalRect.top
+
+      expect(finalX).to.equal(initialX + 10)
+      expect(finalY).to.equal(initialY + 10)
+    })
+  }
 })
 
 describe('grow', () => {
@@ -3911,6 +3966,9 @@ describe('Styling', () => {
       .my-icon {
         width: 12px;
       }
+      .my-html-container {
+        padding: 0;
+      }
       .my-image {
         max-width: 13px;
       }
@@ -3966,6 +4024,7 @@ describe('Styling', () => {
         title: 'my-title',
         closeButton: 'my-close-button',
         icon: 'my-icon',
+        htmlContainer: 'my-html-container',
         image: 'my-image',
         input: 'my-input',
         inputLabel: 'my-input-label',
@@ -3984,6 +4043,8 @@ describe('Styling', () => {
         expect(window.getComputedStyle(Swal.getTitle()).fontSize).to.equal('10px')
         expect(window.getComputedStyle(Swal.getCloseButton()).fontSize).to.equal('11px')
         expect(window.getComputedStyle(Swal.getIcon()).width).to.equal('12px')
+        expect(window.getComputedStyle(Swal.getHtmlContainer()).paddingTop).to.equal('0px')
+        expect(window.getComputedStyle(Swal.getHtmlContainer()).paddingLeft).to.equal('0px')
         expect(window.getComputedStyle(Swal.getImage()).maxWidth).to.equal('13px')
         expect(window.getComputedStyle(Swal.getInput()).fontSize).to.equal('14px')
         expect(window.getComputedStyle(Swal.getInputLabel()).margin).to.equal('0px')

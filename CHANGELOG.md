@@ -1,3 +1,52 @@
+## [11.15.5](https://github.com/sweetalert2/sweetalert2/compare/v11.15.4...v11.15.5) (2025-01-01)
+
+
+### Bug Fixes
+
+* revert "stop using deprecated sass imports ([#2790](https://github.com/sweetalert2/sweetalert2/issues/2790))" ([dd97316](https://github.com/sweetalert2/sweetalert2/commit/dd97316de67a71b719255481d0c5c730a0eea65d))
+
+## [11.15.4](https://github.com/sweetalert2/sweetalert2/compare/v11.15.3...v11.15.4) (2025-01-01)
+
+
+### Bug Fixes
+
+* stop using deprecated sass imports ([#2790](https://github.com/sweetalert2/sweetalert2/issues/2790)) ([c5cc516](https://github.com/sweetalert2/sweetalert2/commit/c5cc5160848986f0a95a631c79e949c6d1a846f9))
+
+## [11.15.3](https://github.com/sweetalert2/sweetalert2/compare/v11.15.2...v11.15.3) (2024-12-21)
+
+
+### Bug Fixes
+
+* styles specificity for html container ([1104474](https://github.com/sweetalert2/sweetalert2/commit/11044749830e36846190ff87030dd5a58d835fb8))
+
+## [11.15.2](https://github.com/sweetalert2/sweetalert2/compare/v11.15.1...v11.15.2) (2024-12-17)
+
+
+### Bug Fixes
+
+* draggable cursor ([#2788](https://github.com/sweetalert2/sweetalert2/issues/2788)) ([b561301](https://github.com/sweetalert2/sweetalert2/commit/b561301ecc025cd4bd2fef807b1c06711246d23b))
+
+## [11.15.1](https://github.com/sweetalert2/sweetalert2/compare/v11.15.0...v11.15.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* dragging cursor ([#2787](https://github.com/sweetalert2/sweetalert2/issues/2787)) ([1926b76](https://github.com/sweetalert2/sweetalert2/commit/1926b76ead2ce2e721420281ffe2229f7e34d3da))
+
+# [11.15.0](https://github.com/sweetalert2/sweetalert2/compare/v11.14.5...v11.15.0) (2024-12-14)
+
+
+### Features
+
+* add draggable param ([#2786](https://github.com/sweetalert2/sweetalert2/issues/2786)) ([eb86a66](https://github.com/sweetalert2/sweetalert2/commit/eb86a660f999f2373d5b685a8c9900050b17468e))
+
+## [11.14.5](https://github.com/sweetalert2/sweetalert2/compare/v11.14.4...v11.14.5) (2024-11-04)
+
+
+### Bug Fixes
+
+* add types to close.js ([e5956d8](https://github.com/sweetalert2/sweetalert2/commit/e5956d85ac460cdefd93e5520d7977546e48c0d7))
+
 ## [11.14.4](https://github.com/sweetalert2/sweetalert2/compare/v11.14.3...v11.14.4) (2024-10-20)
 
 
