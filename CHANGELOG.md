@@ -1,3 +1,31 @@
+## [11.15.9](https://github.com/sweetalert2/sweetalert2/compare/v11.15.8...v11.15.9) (2025-01-02)
+
+
+### Bug Fixes
+
+* **styles:** stop using sass:math, add $swal2-icon-border-width scss variable ([d0bf711](https://github.com/sweetalert2/sweetalert2/commit/d0bf7115e4e21dc8ce3df0740ea73b20463e9543))
+
+## [11.15.8](https://github.com/sweetalert2/sweetalert2/compare/v11.15.7...v11.15.8) (2025-01-02)
+
+
+### Bug Fixes
+
+* toast styles ([4dc809d](https://github.com/sweetalert2/sweetalert2/commit/4dc809dde42c83d96255ddcd9814eff39dc3d95a))
+
+## [11.15.7](https://github.com/sweetalert2/sweetalert2/compare/v11.15.6...v11.15.7) (2025-01-02)
+
+
+### Bug Fixes
+
+* style for toast icons ([812d6c5](https://github.com/sweetalert2/sweetalert2/commit/812d6c57b2cd22cd89857671979b8e6046376edd)), closes [#2792](https://github.com/sweetalert2/sweetalert2/issues/2792)
+
+## [11.15.6](https://github.com/sweetalert2/sweetalert2/compare/v11.15.5...v11.15.6) (2025-01-02)
+
+
+### Bug Fixes
+
+* get rid of SCSS mixins, one file for styles is what I need ([#2791](https://github.com/sweetalert2/sweetalert2/issues/2791)) ([5e72a29](https://github.com/sweetalert2/sweetalert2/commit/5e72a29a1395c4d58d4cc0759cb6aa530ac390dc))
+
 ## [11.15.5](https://github.com/sweetalert2/sweetalert2/compare/v11.15.4...v11.15.5) (2025-01-01)
 
 
