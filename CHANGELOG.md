@@ -1,3 +1,45 @@
+## [11.17.2](https://github.com/sweetalert2/sweetalert2/compare/v11.17.1...v11.17.2) (2025-02-16)
+
+
+### Bug Fixes
+
+* **types:** allow theme update ([4b8c4e2](https://github.com/sweetalert2/sweetalert2/commit/4b8c4e2d1ee01dae36870a01fbb3067615bd5d35))
+
+## [11.17.1](https://github.com/sweetalert2/sweetalert2/compare/v11.17.0...v11.17.1) (2025-02-16)
+
+
+### Bug Fixes
+
+* **types:** allow borderless theme ([8618e53](https://github.com/sweetalert2/sweetalert2/commit/8618e539acb8fc1a65aeb9f2c95fa4c8f0f0926f))
+
+# [11.17.0](https://github.com/sweetalert2/sweetalert2/compare/v11.16.1...v11.17.0) (2025-02-16)
+
+
+### Features
+
+* add borderless theme ([#2800](https://github.com/sweetalert2/sweetalert2/issues/2800)) ([31bc364](https://github.com/sweetalert2/sweetalert2/commit/31bc364be19e3f57ae84bafcb14296f8e9984af3))
+
+## [11.16.1](https://github.com/sweetalert2/sweetalert2/compare/v11.16.0...v11.16.1) (2025-02-14)
+
+
+### Bug Fixes
+
+* toast background color fixed to white in dark theme ([#2798](https://github.com/sweetalert2/sweetalert2/issues/2798)) ([33e248b](https://github.com/sweetalert2/sweetalert2/commit/33e248b25546d9ec6db0ac8f13b379f19e9721cd))
+
+# [11.16.0](https://github.com/sweetalert2/sweetalert2/compare/v11.15.10...v11.16.0) (2025-02-08)
+
+
+### Features
+
+* add built-in light/dark/auto themes ([#2796](https://github.com/sweetalert2/sweetalert2/issues/2796)) ([3f64e05](https://github.com/sweetalert2/sweetalert2/commit/3f64e0584c276f56e631a957fc56ae4c74214224))
+
+## [11.15.10](https://github.com/sweetalert2/sweetalert2/compare/v11.15.9...v11.15.10) (2025-01-03)
+
+
+### Bug Fixes
+
+* **kiss:** get rid of sass:color ([ef5ff13](https://github.com/sweetalert2/sweetalert2/commit/ef5ff132d65ed824be09cdce7538e29c4b364bda))
+
 ## [11.15.9](https://github.com/sweetalert2/sweetalert2/compare/v11.15.8...v11.15.9) (2025-01-02)
 
 

@@ -35,7 +35,7 @@
     "@rollup/plugin-terser": "^0.4.0",
     "@sweetalert2/eslint-config": "^1.0.11",
     "@sweetalert2/stylelint-config": "^3.0.0",
-    "cypress": "^13.0.0",
+    "cypress": "^14.0.0",
     "eslint": "^9.0.0",
     "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-jsdoc": "^50.0.0",
@@ -56,6 +56,7 @@
   "files": [
     "dist",
     "src",
+    "themes",
     "sweetalert2.d.ts"
   ],
   "author": "Limon Monte (https://limonte.github.io)",
@@ -82,8 +83,8 @@
     "sweetalert2-neutral"
   ],
   "scripts": {
-    "dev": "vite sandbox --open",
-    "lint": "stylelint src/**/*.scss && eslint src cypress *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
+    "dev": "vite test/sandbox --open",
+    "lint": "stylelint src/*.scss themes/*.css && eslint src cypress tools *.js *.ts && prettier --check src/**/*.js cypress/**/*.js *.js",
     "build": "node tools/build.mjs",
     "test": "cypress run --headless",
     "check-types": "npx -p typescript@latest tsc --noEmit --lib dom,es2018 -p jsconfig.json",
