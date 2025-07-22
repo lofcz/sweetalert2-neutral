@@ -1,3 +1,66 @@
+## [11.22.2](https://github.com/sweetalert2/sweetalert2/compare/v11.22.1...v11.22.2) (2025-06-29)
+
+
+### Bug Fixes
+
+* simplify success icon when animation: false ([#2836](https://github.com/sweetalert2/sweetalert2/issues/2836)) ([affbbf5](https://github.com/sweetalert2/sweetalert2/commit/affbbf5c22cb2ba345c363c4c62717d052a774ff))
+
+## [11.22.1](https://github.com/sweetalert2/sweetalert2/compare/v11.22.0...v11.22.1) (2025-06-23)
+
+
+### Bug Fixes
+
+* always prevent default esc when swal is shown ([#2834](https://github.com/sweetalert2/sweetalert2/issues/2834)) ([4782601](https://github.com/sweetalert2/sweetalert2/commit/478260131fcb253cbb91a674313f1395bd1739e6))
+
+# [11.22.0](https://github.com/sweetalert2/sweetalert2/compare/v11.21.2...v11.22.0) (2025-05-25)
+
+
+### Features
+
+* add Bulma theme ([#2829](https://github.com/sweetalert2/sweetalert2/issues/2829)) ([355b2bc](https://github.com/sweetalert2/sweetalert2/commit/355b2bcbbd4928154dfb8503746ac63626bb6681))
+
+## [11.21.2](https://github.com/sweetalert2/sweetalert2/compare/v11.21.1...v11.21.2) (2025-05-18)
+
+
+### Bug Fixes
+
+* **theming:** use color-mix for buttons darkening ([#2825](https://github.com/sweetalert2/sweetalert2/issues/2825)) ([57d12b6](https://github.com/sweetalert2/sweetalert2/commit/57d12b6e5841377dac68387d6077b2d9b6b97b31))
+
+## [11.21.1](https://github.com/sweetalert2/sweetalert2/compare/v11.21.0...v11.21.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* **ios:** scrollable elements inside html container ([#2824](https://github.com/sweetalert2/sweetalert2/issues/2824)) ([137ff9d](https://github.com/sweetalert2/sweetalert2/commit/137ff9da423ce96d716f648f8b5099d4b2fc441d))
+
+# [11.21.0](https://github.com/sweetalert2/sweetalert2/compare/v11.20.0...v11.21.0) (2025-05-04)
+
+
+### Features
+
+* add minimal theme ([#2821](https://github.com/sweetalert2/sweetalert2/issues/2821)) ([a98a063](https://github.com/sweetalert2/sweetalert2/commit/a98a0630456a68654be770226eb9d40973437ed6))
+
+# [11.20.0](https://github.com/sweetalert2/sweetalert2/compare/v11.19.1...v11.20.0) (2025-05-03)
+
+
+### Features
+
+* add topLayer param to utilize browsers' top layer API ([#2820](https://github.com/sweetalert2/sweetalert2/issues/2820)) ([003902a](https://github.com/sweetalert2/sweetalert2/commit/003902aa324699f0a751abeaa89b3cbe11ac9821))
+
+## [11.19.1](https://github.com/sweetalert2/sweetalert2/compare/v11.19.0...v11.19.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* shift+tab when a popup is focused ([#2815](https://github.com/sweetalert2/sweetalert2/issues/2815)) ([f68b60e](https://github.com/sweetalert2/sweetalert2/commit/f68b60e9fefd713b2b50ec15b94d5577fdced1ae))
+
+# [11.19.0](https://github.com/sweetalert2/sweetalert2/compare/v11.18.0...v11.19.0) (2025-04-15)
+
+
+### Features
+
+* match outline color with custom button colors ([#2814](https://github.com/sweetalert2/sweetalert2/issues/2814)) ([62fb3fc](https://github.com/sweetalert2/sweetalert2/commit/62fb3fc8eaaacf5931a5d541003f479cb992f6d0))
+
 # [11.18.0](https://github.com/sweetalert2/sweetalert2/compare/v11.17.2...v11.18.0) (2025-04-14)
 
 

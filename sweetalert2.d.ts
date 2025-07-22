@@ -420,7 +420,16 @@ declare module 'sweetalert2-neutral' {
         inputValidator?: (file: File | FileList | null) => SyncOrAsync<string | null | false | void>
       }
 
-  export type SweetAlertTheme = 'light' | 'dark' | 'auto' | 'borderless' | 'embed-iframe'
+  export type SweetAlertTheme =
+    | 'light'
+    | 'dark'
+    | 'auto'
+    | 'minimal'
+    | 'borderless'
+    | 'embed-iframe'
+    | 'bulma'
+    | 'bulma-light'
+    | 'bulma-dark'
 
   export type SweetAlertPosition =
     | 'top'
@@ -1263,6 +1272,14 @@ declare module 'sweetalert2-neutral' {
      * @default true
      */
     scrollbarPadding?: boolean | undefined
+
+    /**
+     * Set to `true` to put the popup on top of all other elements (Top Layer).
+     * Top layer docs: https://developer.mozilla.org/en-US/docs/Glossary/Top_layer
+     *
+     * @default false
+     */
+    topLayer?: boolean | undefined
   }
 
   export default Swal

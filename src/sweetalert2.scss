@@ -3,11 +3,14 @@
 
 // CSS Variables
 :root {
+  --swal2-outline: 0 0 0 3px rgba(100, 150, 200, 0.5);
+
   // CONTAINER
   --swal2-container-padding: 0.625em;
 
   // BACKDROP
   --swal2-backdrop: rgba(0, 0, 0, 0.4);
+  --swal2-backdrop-transition: background-color 0.1s;
 
   // POPUP
   --swal2-width: 32em;
@@ -16,11 +19,14 @@
   --swal2-border-radius: 0.3125rem;
   --swal2-background: white;
   --swal2-color: #545454;
-  --swal2-footer-border-color: #eee;
 
   // ANIMATIONS
   --swal2-show-animation: swal2-show 0.3s;
   --swal2-hide-animation: swal2-hide 0.15s forwards;
+
+  // ICONS
+  --swal2-icon-zoom: 1;
+  --swal2-icon-animations: true;
 
   // TITLE
   --swal2-title-padding: 0.8em 1em 0;
@@ -29,7 +35,18 @@
   --swal2-html-container-padding: 1em 1.6em 0.3em;
 
   // INPUT
+  --swal2-input-border: 1px solid #d9d9d9;
+  --swal2-input-border-radius: 0.1875em;
+  --swal2-input-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
   --swal2-input-background: transparent;
+  --swal2-input-transition: border-color 0.2s, box-shadow 0.2s;
+
+  // INPUT:HOVER
+  --swal2-input-hover-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
+
+  // INPUT:FOCUS
+  --swal2-input-focus-border: 1px solid #b4dbed;
+  --swal2-input-focus-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px $swal2-outline-color;
 
   // PROGRESS STEPS
   --swal2-progress-step-background: #add8e6;
@@ -38,16 +55,62 @@
   --swal2-validation-message-background: #f0f0f0;
   --swal2-validation-message-color: #666;
 
+  // FOOTER
+  --swal2-footer-border-color: #eee;
+  --swal2-footer-background: transparent;
+  --swal2-footer-color: inherit;
+
   // CLOSE BUTTON
   --swal2-close-button-position: initial;
   --swal2-close-button-inset: auto;
   --swal2-close-button-font-size: 2.5em;
   --swal2-close-button-color: #ccc;
-  --swal2-close-button-transition: color 0.1s, box-shadow 0.1s;
+  --swal2-close-button-transition: color 0.2s, box-shadow 0.2s;
   --swal2-close-button-outline: initial;
+  --swal2-close-button-box-shadow: inset 0 0 0 3px transparent;
+  --swal2-close-button-focus-box-shadow: inset var(--swal2-outline);
 
   // CLOSE BUTTON:HOVER
   --swal2-close-button-hover-transform: none;
+
+  // ACTIONS
+  --swal2-actions-justify-content: center;
+  --swal2-actions-width: auto;
+  --swal2-actions-margin: 1.25em auto 0;
+  --swal2-actions-padding: 0;
+  --swal2-actions-border-radius: 0;
+  --swal2-actions-background: transparent;
+
+  // COMMON VARIABLES FOR ALL ACTION BUTTONS
+  --swal2-action-button-transition: background-color 0.2s, box-shadow 0.2s;
+  --swal2-action-button-hover: black 10%;
+  --swal2-action-button-active: black 10%;
+
+  // CONFIRM BUTTON
+  --swal2-confirm-button-box-shadow: none;
+  --swal2-confirm-button-border-radius: 0.25em;
+  --swal2-confirm-button-background-color: #7066e0;
+  --swal2-confirm-button-color: #fff;
+
+  // DENY BUTTON
+  --swal2-deny-button-box-shadow: none;
+  --swal2-deny-button-border-radius: 0.25em;
+  --swal2-deny-button-background-color: #dc3741;
+  --swal2-deny-button-color: #fff;
+
+  // CANCEL BUTTON
+  --swal2-cancel-button-box-shadow: none;
+  --swal2-cancel-button-border-radius: 0.25em;
+  --swal2-cancel-button-background-color: #6e7881;
+  --swal2-cancel-button-color: #fff;
+
+  // TOASTS
+  --swal2-toast-show-animation: swal2-toast-show 0.5s;
+  --swal2-toast-hide-animation: swal2-toast-hide 0.1s forwards;
+  --swal2-toast-border: none;
+  --swal2-toast-box-shadow:
+    0 0 1px hsl(0deg 0% 0% / 0.075), 0 1px 2px hsl(0deg 0% 0% / 0.075), 1px 2px 4px hsl(0deg 0% 0% / 0.075),
+    1px 3px 8px hsl(0deg 0% 0% / 0.075), 2px 4px 16px hsl(0deg 0% 0% / 0.075);
 }
 
 // DARK THEME
@@ -83,8 +146,6 @@
   }
 }
 
-$swal2-white: #fff !default;
-$swal2-black: #000 !default;
 $swal2-outline-color: rgba(100, 150, 200, 0.5) !default;
 
 // CONTAINER
@@ -92,7 +153,7 @@ $swal2-container-padding: var(--swal2-container-padding) !default;
 
 // BACKDROP
 $swal2-backdrop: var(--swal2-backdrop) !default;
-$swal2-backdrop-transition: background-color 0.1s !default;
+$swal2-backdrop-transition: var(--swal2-backdrop-transition) !default;
 
 // POPUP
 $swal2-width: var(--swal2-width) !default;
@@ -111,14 +172,12 @@ $swal2-font: inherit !default;
 $swal2-font-size: 1rem !default;
 
 // ICONS
-$swal2-icon-size: 5em !default;
-$swal2-icon-animations: true !default;
 $swal2-icon-margin: 2.5em auto 0.6em !default;
 $swal2-icon-font-family: inherit !default;
 $swal2-icon-font-size: 3.75em !default;
 $swal2-icon-border-width: 0.25em !default;
 $swal2-icon-border-color: #000 !default;
-$swal2-icon-zoom: null !default;
+$swal2-icon-zoom: var(--swal2-icon-zoom) !default;
 $swal2-success: #a5dc86 !default;
 $swal2-success-border: rgba($swal2-success, 0.3) !default;
 $swal2-error: #f27474 !default;
@@ -157,24 +216,18 @@ $swal2-input-margin: 1em 2em 3px !default;
 $swal2-input-width: auto !default;
 $swal2-input-height: 2.625em !default;
 $swal2-input-padding: 0 0.75em !default;
-$swal2-input-border: 1px solid #d9d9d9 !default;
-$swal2-input-border-radius: 0.1875em !default;
-$swal2-input-box-shadow:
-  inset 0 1px 1px rgba($swal2-black, 0.06),
-  0 0 0 3px transparent !default;
+$swal2-input-border: var(--swal2-input-border) !default;
+$swal2-input-border-radius: var(--swal2-input-border-radius) !default;
+$swal2-input-box-shadow: var(--swal2-input-box-shadow) !default;
 $swal2-input-font-size: 1.125em !default;
 $swal2-input-background: var(--swal2-input-background) !default;
 $swal2-input-color: inherit !default;
-$swal2-input-transition:
-  border-color 0.1s,
-  box-shadow 0.1s !default;
+$swal2-input-transition: var(--swal2-input-transition) !default;
 
 // INPUT:FOCUS
-$swal2-input-focus-border: 1px solid #b4dbed !default;
+$swal2-input-focus-border: var(--swal2-input-focus-border) !default;
 $swal2-input-focus-outline: none !default;
-$swal2-input-focus-box-shadow:
-  inset 0 1px 1px rgba($swal2-black, 0.06),
-  0 0 0 3px $swal2-outline-color !default;
+$swal2-input-focus-box-shadow: var(--swal2-input-focus-box-shadow) !default;
 
 // TEXTAREA SPECIFIC VARIABLES
 $swal2-textarea-height: 6.75em !default;
@@ -194,7 +247,7 @@ $swal2-validation-message-color: var(--swal2-validation-message-color) !default;
 $swal2-validation-message-font-size: 1em !default;
 $swal2-validation-message-font-weight: 300 !default;
 $swal2-validation-message-icon-background: $swal2-error !default;
-$swal2-validation-message-icon-color: $swal2-white !default;
+$swal2-validation-message-icon-color: #fff !default;
 $swal2-validation-message-icon-zoom: null !default;
 
 // PROGRESS STEPS
@@ -210,21 +263,22 @@ $swal2-progress-step-width: 2em;
 $swal2-progress-step-height: 2em;
 $swal2-progress-step-border-radius: 2em;
 $swal2-progress-step-background: var(--swal2-progress-step-background) !default;
-$swal2-progress-step-color: $swal2-white !default;
+$swal2-progress-step-color: #fff !default;
 $swal2-active-step-background: #2778c4 !default;
-$swal2-active-step-color: $swal2-white !default;
+$swal2-active-step-color: #fff !default;
 
 // FOOTER
 $swal2-footer-margin: 1em 0 0 !default;
 $swal2-footer-padding: 1em 1em 0 !default;
 $swal2-footer-border-color: var(--swal2-footer-border-color) !default;
-$swal2-footer-color: inherit !default;
+$swal2-footer-background: var(--swal2-footer-background) !default;
+$swal2-footer-color: var(--swal2-footer-color) !default;
 $swal2-footer-font-size: 1em !default;
 $swal2-footer-text-align: center !default;
 
 // TIMER PROGRESS BAR
 $swal2-timer-progress-bar-height: 0.25em;
-$swal2-timer-progress-bar-background: rgba($swal2-black, 0.2) !default;
+$swal2-timer-progress-bar-background: rgba(0, 0, 0, 0.2) !default;
 
 // CLOSE BUTTON
 $swal2-close-button-justify-self: end !default;
@@ -244,7 +298,7 @@ $swal2-close-button-background: transparent !default;
 $swal2-close-button-color: var(--swal2-close-button-color) !default;
 $swal2-close-button-font-family: monospace !default;
 $swal2-close-button-font-size: var(--swal2-close-button-font-size) !default;
-$swal2-close-button-box-shadow: inset 0 0 0 3px transparent !default;
+$swal2-close-button-box-shadow: var(--swal2-close-button-box-shadow) !default;
 
 // CLOSE BUTTON:HOVER
 $swal2-close-button-hover-transform: var(--swal2-close-button-hover-transform) !default;
@@ -253,53 +307,47 @@ $swal2-close-button-hover-background: transparent !default;
 
 // CLOSE BUTTON:FOCUS
 $swal2-close-button-focus-outline: none !default;
-$swal2-close-button-focus-box-shadow: inset 0 0 0 3px $swal2-outline-color !default;
+$swal2-close-button-focus-box-shadow: var(--swal2-close-button-focus-box-shadow) !default;
 
 // ACTIONS
 $swal2-actions-flex-wrap: wrap !default;
 $swal2-actions-align-items: center !default;
-$swal2-actions-justify-content: center !default;
-$swal2-actions-width: auto !default;
-$swal2-actions-margin: 1.25em auto 0 !default;
-$swal2-actions-padding: 0 !default;
+$swal2-actions-justify-content: var(--swal2-actions-justify-content) !default;
+$swal2-actions-width: var(--swal2-actions-width) !default;
+$swal2-actions-margin: var(--swal2-actions-margin) !default;
+$swal2-actions-padding: var(--swal2-actions-padding) !default;
+$swal2-actions-border-radius: var(--swal2-actions-border-radius) !default;
+$swal2-actions-background: var(--swal2-actions-background) !default;
 
 // COMMON VARIABLES FOR ALL ACTION BUTTONS
 $swal2-button-margin: 0.3125em !default;
 $swal2-button-padding: 0.625em 1.1em !default;
-$swal2-button-transition: box-shadow 0.1s !default;
+$swal2-button-transition: var(--swal2-action-button-transition) !default;
 $swal2-button-box-shadow: 0 0 0 3px transparent !default;
 $swal2-button-font-weight: 500 !default;
-$swal2-button-darken-hover: rgba($swal2-black, 0.1) !default;
-$swal2-button-darken-active: rgba($swal2-black, 0.2) !default;
-$swal2-button-focus-outline: none !default;
-$swal2-button-focus-box-shadow: 0 0 0 3px $swal2-outline-color !default;
 
 // CONFIRM BUTTON
 $swal2-confirm-button-order: null !default;
-$swal2-confirm-button-border: 0 !default;
-$swal2-confirm-button-border-radius: 0.25em !default;
-$swal2-confirm-button-background-color: #7066e0 !default;
-$swal2-confirm-button-color: $swal2-white !default;
+$swal2-confirm-button-border: var(--swal2-confirm-button-border) !default;
+$swal2-confirm-button-border-radius: var(--swal2-confirm-button-border-radius) !default;
+$swal2-confirm-button-background-color: var(--swal2-confirm-button-background-color) !default;
+$swal2-confirm-button-color: var(--swal2-confirm-button-color) !default;
 $swal2-confirm-button-font-size: 1em !default;
-$swal2-confirm-button-focus-box-shadow: 0 0 0 3px rgba($swal2-confirm-button-background-color, 0.5) !default;
 
 // DENY BUTTON
 $swal2-deny-button-order: null !default;
-$swal2-deny-button-border: 0 !default;
-$swal2-deny-button-border-radius: 0.25em !default;
-$swal2-deny-button-background-color: #dc3741 !default;
-$swal2-deny-button-color: $swal2-white !default;
+$swal2-deny-button-border: var(--swal2-deny-button-border) !default;
+$swal2-deny-button-border-radius: var(--swal2-deny-button-border-radius) !default;
+$swal2-deny-button-background-color: var(--swal2-deny-button-background-color) !default;
+$swal2-deny-button-color: var(--swal2-deny-button-color) !default;
 $swal2-deny-button-font-size: 1em !default;
-$swal2-deny-button-focus-box-shadow: 0 0 0 3px rgba($swal2-deny-button-background-color, 0.5) !default;
 
 // CANCEL BUTTON
 $swal2-cancel-button-order: null !default;
-$swal2-cancel-button-border: 0 !default;
-$swal2-cancel-button-border-radius: 0.25em !default;
-$swal2-cancel-button-background-color: #6e7881 !default;
-$swal2-cancel-button-color: $swal2-white !default;
+$swal2-cancel-button-border-radius: var(--swal2-cancel-button-border-radius) !default;
+$swal2-cancel-button-background-color: var(--swal2-cancel-button-background-color) !default;
+$swal2-cancel-button-color: var(--swal2-cancel-button-color) !default;
 $swal2-cancel-button-font-size: 1em !default;
-$swal2-cancel-button-focus-box-shadow: 0 0 0 3px rgba($swal2-cancel-button-background-color, 0.5) !default;
 
 // LOADER
 $swal2-loader-align-items: center !default;
@@ -314,15 +362,10 @@ $swal2-loader-border-radius: 100% !default;
 $swal2-loader-border-color: #2778c4 transparent #2778c4 transparent !default;
 
 // TOASTS
-$swal2-toast-show-animation: swal2-toast-show 0.5s !default;
-$swal2-toast-hide-animation: swal2-toast-hide 0.1s forwards !default;
-$swal2-toast-border: none !default;
-$swal2-toast-box-shadow:
-  0 0 1px hsl(0deg 0% 0% / 0.075),
-  0 1px 2px hsl(0deg 0% 0% / 0.075),
-  1px 2px 4px hsl(0deg 0% 0% / 0.075),
-  1px 3px 8px hsl(0deg 0% 0% / 0.075),
-  2px 4px 16px hsl(0deg 0% 0% / 0.075) !default;
+$swal2-toast-show-animation: var(--swal2-toast-show-animation) !default;
+$swal2-toast-hide-animation: var(--swal2-toast-hide-animation) !default;
+$swal2-toast-border: var(--swal2-toast-border) !default;
+$swal2-toast-box-shadow: var(--swal2-toast-box-shadow) !default;
 $swal2-toast-background: $swal2-background !default;
 $swal2-toast-close-button-width: 0.8em !default;
 $swal2-toast-close-button-height: 0.8em !default;
@@ -562,6 +605,11 @@ div:where(.swal2-container) {
     transition: none !important;
   }
 
+  &[popover] {
+    width: auto;
+    border: 0;
+  }
+
   div:where(.swal2-popup) {
     display: none;
     position: relative;
@@ -576,6 +624,7 @@ div:where(.swal2-container) {
     color: $swal2-color;
     font-family: $swal2-font;
     font-size: $swal2-font-size;
+    container-name: swal2-popup;
 
     &:focus {
       outline: none;
@@ -626,22 +675,8 @@ div:where(.swal2-container) {
     width: $swal2-actions-width;
     margin: $swal2-actions-margin;
     padding: $swal2-actions-padding;
-
-    &:not(.swal2-loading) {
-      .swal2-styled {
-        &[disabled] {
-          opacity: 0.4;
-        }
-
-        &:hover {
-          background-image: linear-gradient($swal2-button-darken-hover, $swal2-button-darken-hover);
-        }
-
-        &:active {
-          background-image: linear-gradient($swal2-button-darken-active, $swal2-button-darken-active);
-        }
-      }
-    }
+    border-radius: $swal2-actions-border-radius;
+    background: $swal2-actions-background;
   }
 
   div:where(.swal2-loader) {
@@ -662,6 +697,7 @@ div:where(.swal2-container) {
     margin: $swal2-button-margin;
     padding: $swal2-button-padding;
     transition: $swal2-button-transition;
+    border: none;
     box-shadow: $swal2-button-box-shadow;
     font-weight: $swal2-button-font-weight;
 
@@ -671,54 +707,67 @@ div:where(.swal2-container) {
 
     &:where(.swal2-confirm) {
       order: $swal2-confirm-button-order;
-      border: $swal2-confirm-button-border;
       border-radius: $swal2-confirm-button-border-radius;
       background: initial;
       background-color: $swal2-confirm-button-background-color;
+      box-shadow: var(--swal2-confirm-button-box-shadow);
       color: $swal2-confirm-button-color;
       font-size: $swal2-confirm-button-font-size;
 
-      &:focus-visible {
-        box-shadow: $swal2-confirm-button-focus-box-shadow;
+      &:hover {
+        background-color: color-mix(in srgb, $swal2-confirm-button-background-color, var(--swal2-action-button-hover));
+      }
+
+      &:active {
+        background-color: color-mix(in srgb, $swal2-confirm-button-background-color, var(--swal2-action-button-active));
       }
     }
 
     &:where(.swal2-deny) {
       order: $swal2-deny-button-order;
-      border: $swal2-deny-button-border;
       border-radius: $swal2-deny-button-border-radius;
       background: initial;
       background-color: $swal2-deny-button-background-color;
+      box-shadow: var(--swal2-deny-button-box-shadow);
       color: $swal2-deny-button-color;
       font-size: $swal2-deny-button-font-size;
 
-      &:focus-visible {
-        box-shadow: $swal2-deny-button-focus-box-shadow;
+      &:hover {
+        background-color: color-mix(in srgb, $swal2-deny-button-background-color, var(--swal2-action-button-hover));
+      }
+
+      &:active {
+        background-color: color-mix(in srgb, $swal2-deny-button-background-color, var(--swal2-action-button-active));
       }
     }
 
     &:where(.swal2-cancel) {
       order: $swal2-cancel-button-order;
-      border: $swal2-cancel-button-border;
       border-radius: $swal2-cancel-button-border-radius;
       background: initial;
       background-color: $swal2-cancel-button-background-color;
+      box-shadow: var(--swal2-cancel-button-box-shadow);
       color: $swal2-cancel-button-color;
       font-size: $swal2-cancel-button-font-size;
 
-      &:focus-visible {
-        box-shadow: $swal2-cancel-button-focus-box-shadow;
+      &:hover {
+        background-color: color-mix(in srgb, $swal2-cancel-button-background-color, var(--swal2-action-button-hover));
       }
-    }
 
-    &.swal2-default-outline {
-      &:focus-visible {
-        box-shadow: $swal2-button-focus-box-shadow;
+      &:active {
+        background-color: color-mix(in srgb, $swal2-cancel-button-background-color, var(--swal2-action-button-active));
       }
     }
 
     &:focus-visible {
-      outline: $swal2-button-focus-outline;
+      outline: none;
+      box-shadow: var(--swal2-action-button-focus-box-shadow);
+    }
+
+    &[disabled] {
+      &:not(.swal2-loading) {
+        opacity: 0.4;
+      }
     }
 
     &::-moz-focus-inner {
@@ -730,6 +779,7 @@ div:where(.swal2-container) {
     margin: $swal2-footer-margin;
     padding: $swal2-footer-padding;
     border-top: 1px solid $swal2-footer-border-color;
+    background: $swal2-footer-background;
     color: $swal2-footer-color;
     font-size: $swal2-footer-font-size;
     text-align: $swal2-footer-text-align;
@@ -840,6 +890,10 @@ div:where(.swal2-container) {
     &.swal2-inputerror {
       border-color: $swal2-error !important;
       box-shadow: 0 0 2px $swal2-error !important;
+    }
+
+    &:hover {
+      box-shadow: var(--swal2-input-hover-box-shadow);
     }
 
     &:focus {
@@ -1012,15 +1066,15 @@ div:where(.swal2-icon) {
   position: relative;
   box-sizing: content-box;
   justify-content: center;
-  width: $swal2-icon-size;
-  height: $swal2-icon-size;
+  width: 5em;
+  height: 5em;
   margin: $swal2-icon-margin;
   zoom: $swal2-icon-zoom;
   border: $swal2-icon-border-width solid transparent;
   border-radius: 50%;
   border-color: $swal2-icon-border-color;
   font-family: $swal2-icon-font-family;
-  line-height: $swal2-icon-size;
+  line-height: 5em;
   cursor: default;
   user-select: none;
 
@@ -1060,8 +1114,8 @@ div:where(.swal2-icon) {
     }
 
     // Error icon animation
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         animation: swal2-animate-error-icon 0.5s;
 
         .swal2-x-mark {
@@ -1076,8 +1130,8 @@ div:where(.swal2-icon) {
     color: $swal2-warning;
 
     // Warning icon animation
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         animation: swal2-animate-error-icon 0.5s;
 
         .swal2-icon-content {
@@ -1092,8 +1146,8 @@ div:where(.swal2-icon) {
     color: $swal2-info;
 
     // Info icon animation
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         animation: swal2-animate-error-icon 0.5s;
 
         .swal2-icon-content {
@@ -1108,8 +1162,8 @@ div:where(.swal2-icon) {
     color: $swal2-question;
 
     // Question icon animation
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         animation: swal2-animate-error-icon 0.5s;
 
         .swal2-icon-content {
@@ -1195,8 +1249,8 @@ div:where(.swal2-icon) {
     }
 
     // Success icon animation
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         .swal2-success-line-tip {
           animation: swal2-animate-success-line-tip 0.75s;
         }
@@ -1260,6 +1314,7 @@ div:where(.swal2-icon) {
   grid-template-columns: min-content auto min-content;
   padding: $swal2-toast-padding;
   overflow-y: hidden;
+  border: $swal2-toast-border;
   background: $swal2-toast-background;
   box-shadow: $swal2-toast-box-shadow;
   pointer-events: all;
@@ -1433,8 +1488,8 @@ div:where(.swal2-icon) {
       }
     }
 
-    &.swal2-icon-show {
-      @if $swal2-icon-animations {
+    @container swal2-popup style(--swal2-icon-animations:true) {
+      &.swal2-icon-show {
         .swal2-success-line-tip {
           animation: swal2-toast-animate-success-line-tip 0.75s;
         }

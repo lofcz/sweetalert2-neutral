@@ -207,6 +207,9 @@ describe('should trap focus in modals', () => {
         expect(document.activeElement).to.equal(Swal.getConfirmButton())
         triggerKeydownEvent(document.activeElement, 'Tab', { shiftKey: true })
         expect(document.activeElement).to.equal(Swal.getInput())
+        Swal.getPopup().focus()
+        triggerKeydownEvent(document.activeElement, 'Tab', { shiftKey: true })
+        expect(document.activeElement).to.equal(Swal.getCancelButton())
         done()
       },
     })
@@ -1244,7 +1247,7 @@ describe('template', () => {
     expect($('.swal2-select option:nth-child(3)').selected).to.be.true
     expect(isHidden(Swal.getConfirmButton())).to.be.true
     expect(isVisible(Swal.getCancelButton())).to.be.true
-    expect(Swal.getDenyButton().style.backgroundColor).to.equal('red')
+    expect(window.getComputedStyle(Swal.getDenyButton()).backgroundColor).to.equal('rgb(255, 0, 0)')
     expect(Swal.getPopup().style.width).to.equal('200px')
     expect(isVisible(Swal.getDenyButton())).to.be.true
     expect(Swal.getCancelButton().nextSibling).to.equal(Swal.getDenyButton())
@@ -2084,11 +2087,7 @@ describe('theme', () => {
     SwalWithoutAnimation.fire({
       theme: 'foo',
     })
-    expect(
-      spy.calledWith(
-        `SweetAlert2: Invalid theme "foo". Expected "light", "dark", "auto", "borderless", or "embed-iframe"`
-      )
-    ).to.be.true
+    expect(spy.calledWith(`SweetAlert2: Invalid theme "foo"`)).to.be.true
   })
 })
 
@@ -2339,11 +2338,7 @@ describe('update()', () => {
     const spy = cy.spy(console, 'warn')
     SwalWithoutAnimation.fire()
     Swal.update({ theme: 'foo' })
-    expect(
-      spy.calledWith(
-        `SweetAlert2: Invalid theme "foo". Expected "light", "dark", "auto", "borderless", or "embed-iframe"`
-      )
-    ).to.be.true
+    expect(spy.calledWith(`SweetAlert2: Invalid theme "foo"`)).to.be.true
   })
 })
 
@@ -2724,6 +2719,17 @@ describe('Miscellaneous tests', function () {
     })
   })
 
+  it('allowEscapeKey: false', () => {
+    SwalWithoutAnimation.fire({
+      allowEscapeKey: false,
+    })
+    const event1 = triggerKeydownEvent(Swal.getPopup(), 'Escape')
+    expect(event1.defaultPrevented).to.be.true
+    SwalWithoutAnimation.close()
+    const event2 = triggerKeydownEvent(document.body, 'Escape')
+    expect(event2.defaultPrevented).to.be.false
+  })
+
   it('allowEscapeKey as a function', (done) => {
     let functionWasCalled = false
 
@@ -2899,7 +2905,7 @@ describe('Miscellaneous tests', function () {
   })
 
   it('visual appearance', () => {
-    Swal.fire({
+    SwalWithoutAnimation.fire({
       padding: '2em',
       background: 'red',
       confirmButtonColor: 'green',
@@ -2908,10 +2914,19 @@ describe('Miscellaneous tests', function () {
     })
 
     expect(Swal.getPopup().style.padding).to.equal('2em')
-    expect(window.getComputedStyle(Swal.getPopup()).backgroundColor, 'rgb(255, 0).to.equal(0)')
-    expect(Swal.getConfirmButton().style.backgroundColor).to.equal('green')
-    expect(Swal.getDenyButton().style.backgroundColor).to.equal('red')
-    expect(Swal.getCancelButton().style.backgroundColor).to.equal('blue')
+    expect(window.getComputedStyle(Swal.getPopup()).backgroundColor).to.equal('rgb(255, 0, 0)')
+    expect(window.getComputedStyle(Swal.getConfirmButton()).backgroundColor).to.equal('rgb(0, 128, 0)')
+    expect(window.getComputedStyle(Swal.getDenyButton()).backgroundColor).to.equal('rgb(255, 0, 0)')
+    expect(window.getComputedStyle(Swal.getCancelButton()).backgroundColor).to.equal('rgb(0, 0, 255)')
+    expect(Swal.getConfirmButton().style.getPropertyValue('--swal2-action-button-focus-box-shadow')).to.equal(
+      '0 0 0 3px rgba(0, 128, 0, 0.5)'
+    )
+    expect(Swal.getDenyButton().style.getPropertyValue('--swal2-action-button-focus-box-shadow')).to.equal(
+      '0 0 0 3px rgba(255, 0, 0, 0.5)'
+    )
+    expect(Swal.getCancelButton().style.getPropertyValue('--swal2-action-button-focus-box-shadow')).to.equal(
+      '0 0 0 3px rgba(0, 0, 255, 0.5)'
+    )
   })
 
   it('null values', () => {
